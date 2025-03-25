@@ -103,7 +103,8 @@ model Mecanico {
 // Modelo Usuario
 model Usuario {
   id            String   @id @default(uuid())
-  name          String   @unique @db.VarChar(50)
+  name          String
+  email         String   @unique
   password_hash String   @db.VarChar(255)
   role          Role     @default(USER)
   createdAt     DateTime @default(now())
