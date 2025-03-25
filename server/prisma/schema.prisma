@@ -11,54 +11,56 @@ generator client {
 
 // Modelo Veiculo
 model Veiculo {
-  id        Int            @id @default(autoincrement())
-  clienteId Int
-  placa     String         @db.VarChar(10)
-  modelo    String         @db.VarChar(50)
-  marca     String         @db.VarChar(50)
-  ano       Int?
-  cliente   Cliente        @relation(fields: [clienteId], references: [id])
-  ordens    OrdemServico[]
+  id             Int            @id @default(autoincrement())
+  clienteId      Int
+  placa          String         @db.VarChar(10)
+  modelo         String         @db.VarChar(50)
+  marca          String         @db.VarChar(50)
+  ano            Int?
+  cliente        Cliente        @relation(fields: [clienteId], references: [id])
+  ordens_servico OrdemServico[]
 
   @@map("veiculos")
 }
 
 // Modelo OrdemServico
 model OrdemServico {
-  id          Int            @id @default(autoincrement())
+  id          Int                @id @default(autoincrement())
   clienteId   Int
   veiculoId   Int
-  status      String         @default("Em andamento") @db.VarChar(20)
+  status      StatusOrdemServico @default(EM_ANDAMENTO)
   mecanicoId  Int?
-  desconto    Float          @default(0.00)
+  desconto    Float              @default(0.00)
   valorTotal  Float
-  cliente     Cliente        @relation(fields: [clienteId], references: [id])
-  veiculo     Veiculo        @relation(fields: [veiculoId], references: [id])
-  mecanico    Mecanico?      @relation(fields: [mecanicoId], references: [id])
+  createdAt   DateTime           @default(now())
+  updateAt    DateTime           @updatedAt
+  cliente     Cliente            @relation(fields: [clienteId], references: [id])
+  veiculo     Veiculo            @relation(fields: [veiculoId], references: [id])
+  mecanico    Mecanico?          @relation(fields: [mecanicoId], references: [id])
   servicos    Servico[] // Relação com serviços realizados
   pecasUsadas OrdemEstoque[] // Relação com peças usadas
 
-  @@map("ordensServico")
+  @@map("ordens_servico")
 }
 
 // Modelo Servico
 model Servico {
-  id           Int          @id @default(autoincrement())
-  ordemId      Int
-  descricao    String
-  valorServico Float
-  ordem        OrdemServico @relation(fields: [ordemId], references: [id])
+  id            Int          @id @default(autoincrement())
+  ordemId       Int
+  descricao     String
+  valorServico  Float
+  ordem_servico OrdemServico @relation(fields: [ordemId], references: [id])
 
   @@map("servicos")
 }
 
 // Modelo Estoque
 model Estoque {
-  id            Int            @id @default(autoincrement())
-  nomePeca      String         @db.VarChar(100)
-  quantidade    Int
-  valorUnitario Float
-  ordens        OrdemEstoque[] // Relação com ordens que usaram essa peça
+  id             Int            @id @default(autoincrement())
+  nomePeca       String         @db.VarChar(100)
+  quantidade     Int
+  valorUnitario  Float
+  ordens_estoque OrdemEstoque[] // Relação com ordens que usaram essa peça
 
   @@map("estoques")
 }
@@ -73,38 +75,38 @@ model OrdemEstoque {
   ordem             OrdemServico @relation(fields: [ordemId], references: [id])
   estoque           Estoque      @relation(fields: [estoqueId], references: [id])
 
-  @@map("ordensEstoque")
+  @@map("ordens_estoque")
 }
 
 // Modelo Cliente
 model Cliente {
-  id       Int            @id @default(autoincrement())
-  nome     String         @db.VarChar(100)
-  cpf      String         @unique @db.VarChar(14)
-  telefone String?        @db.VarChar(15)
-  veiculos Veiculo[]
-  ordens   OrdemServico[]
+  id             Int            @id @default(autoincrement())
+  nome           String         @db.VarChar(100)
+  cpf            String         @unique @db.VarChar(14)
+  telefone       String?        @db.VarChar(15)
+  veiculos       Veiculo[]
+  ordens_servico OrdemServico[]
 
   @@map("clientes")
 }
 
 // Modelo Mecanico
 model Mecanico {
-  id            Int            @id @default(autoincrement())
-  nome          String         @db.VarChar(100)
-  especialidade String?        @db.VarChar(50)
-  ordens        OrdemServico[]
+  id             Int            @id @default(autoincrement())
+  nome           String         @db.VarChar(100)
+  especialidade  String?        @db.VarChar(50)
+  ordens_servico OrdemServico[]
 
   @@map("mecanicos")
 }
 
 // Modelo Usuario
 model Usuario {
-  id        String   @id @default(uuid())
-  username  String   @unique @db.VarChar(50)
-  password  String   @db.VarChar(255)
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
+  id            String   @id @default(uuid())
+  name          String   @unique @db.VarChar(50)
+  password_hash String   @db.VarChar(255)
+  role          Role     @default(USER)
+  createdAt     DateTime @default(now())
 
   @@map("usuarios")
 }
@@ -113,4 +115,9 @@ model Usuario {
 enum Role {
   ADMIN
   USER
+}
+
+enum StatusOrdemServico {
+  EM_ANDAMENTO
+  FECHADA
 }
