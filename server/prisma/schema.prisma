@@ -1,0 +1,116 @@
+// Configuração do datasource (conexão com PostgreSQL)
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Gerador para o Prisma Client
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Modelo Veiculo
+model Veiculo {
+  id        Int            @id @default(autoincrement())
+  clienteId Int
+  placa     String         @db.VarChar(10)
+  modelo    String         @db.VarChar(50)
+  marca     String         @db.VarChar(50)
+  ano       Int?
+  cliente   Cliente        @relation(fields: [clienteId], references: [id])
+  ordens    OrdemServico[]
+
+  @@map("veiculos")
+}
+
+// Modelo OrdemServico
+model OrdemServico {
+  id          Int            @id @default(autoincrement())
+  clienteId   Int
+  veiculoId   Int
+  status      String         @default("Em andamento") @db.VarChar(20)
+  mecanicoId  Int?
+  desconto    Float          @default(0.00)
+  valorTotal  Float
+  cliente     Cliente        @relation(fields: [clienteId], references: [id])
+  veiculo     Veiculo        @relation(fields: [veiculoId], references: [id])
+  mecanico    Mecanico?      @relation(fields: [mecanicoId], references: [id])
+  servicos    Servico[] // Relação com serviços realizados
+  pecasUsadas OrdemEstoque[] // Relação com peças usadas
+
+  @@map("ordensServico")
+}
+
+// Modelo Servico
+model Servico {
+  id           Int          @id @default(autoincrement())
+  ordemId      Int
+  descricao    String
+  valorServico Float
+  ordem        OrdemServico @relation(fields: [ordemId], references: [id])
+
+  @@map("servicos")
+}
+
+// Modelo Estoque
+model Estoque {
+  id            Int            @id @default(autoincrement())
+  nomePeca      String         @db.VarChar(100)
+  quantidade    Int
+  valorUnitario Float
+  ordens        OrdemEstoque[] // Relação com ordens que usaram essa peça
+
+  @@map("estoques")
+}
+
+// Modelo OrdemEstoque
+model OrdemEstoque {
+  id                Int          @id @default(autoincrement())
+  ordemId           Int
+  estoqueId         Int
+  quantidadeUsada   Int
+  valorUnitarioPeca Float
+  ordem             OrdemServico @relation(fields: [ordemId], references: [id])
+  estoque           Estoque      @relation(fields: [estoqueId], references: [id])
+
+  @@map("ordensEstoque")
+}
+
+// Modelo Cliente
+model Cliente {
+  id       Int            @id @default(autoincrement())
+  nome     String         @db.VarChar(100)
+  cpf      String         @unique @db.VarChar(14)
+  telefone String?        @db.VarChar(15)
+  veiculos Veiculo[]
+  ordens   OrdemServico[]
+
+  @@map("clientes")
+}
+
+// Modelo Mecanico
+model Mecanico {
+  id            Int            @id @default(autoincrement())
+  nome          String         @db.VarChar(100)
+  especialidade String?        @db.VarChar(50)
+  ordens        OrdemServico[]
+
+  @@map("mecanicos")
+}
+
+// Modelo Usuario
+model Usuario {
+  id        String   @id @default(uuid())
+  username  String   @unique @db.VarChar(50)
+  password  String   @db.VarChar(255)
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+
+  @@map("usuarios")
+}
+
+// Enum para o campo role de Usuario
+enum Role {
+  ADMIN
+  USER
+}
