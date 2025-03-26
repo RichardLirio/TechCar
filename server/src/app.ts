@@ -2,8 +2,29 @@ import fastify from "fastify";
 import { appRoutes } from "./http/routes";
 import { ZodError } from "zod";
 import { env } from "./env";
+import fastifyJwt from "@fastify/jwt";
+import fastifyCookie from "@fastify/cookie";
+import fastifyCors from "@fastify/cors";
 
 export const app = fastify();
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: "refreshToken",
+    signed: false,
+  },
+  sign: {
+    expiresIn: "1d",
+  },
+});
+
+app.register(fastifyCors, {
+  origin: true,
+  credentials: true,
+});
+
+app.register(fastifyCookie);
 
 app.register(appRoutes);
 
