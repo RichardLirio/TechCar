@@ -34,8 +34,8 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 - **RF12:** Usuários podem visualizar e atualizar o estoque.
 
 ### 4. Gestão de Usuários
-- **RF13:** O sistema deve suportar autenticação de usuários com email, senha e papel (admin ou user).
-- **RF14:** Apenas usuários autenticados podem acessar o sistema.
+- [X] **RF13:** O sistema deve suportar autenticação de usuários com email, senha e papel (admin ou user).
+- [X] **RF14:** Apenas usuários autenticados podem acessar o sistema.
 
 ### 5. Relatórios
 - **RF15:** O sistema deve gerar relatórios de ordens concluídas, faturamento e serviços por mecânico (futuro).
