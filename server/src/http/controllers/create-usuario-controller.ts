@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { CreateUserUseCase } from "@/use-cases/user-create";
+import { CreateUserUseCase } from "@/use-cases/create-usuario";
 
 export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {
   const createUserBodySchema = z.object({
