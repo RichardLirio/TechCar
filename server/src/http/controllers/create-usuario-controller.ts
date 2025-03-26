@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { CreateUserUseCase } from "@/use-cases/create-usuario";
+import { makeCreateUsuarioUseCase } from "@/use-cases/factories/make-create-usuario-use-case";
+import { UserAlreadyExistsError } from "@/use-cases/erros/usuario-ja-existe-erro";
 
 export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {
   const createUserBodySchema = z.object({
@@ -12,10 +13,19 @@ export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {
   const { name, email, password } = createUserBodySchema.parse(request.body);
 
   try {
-    await CreateUserUseCase({ name, email, password });
+    const createUsuarioUseCase = makeCreateUsuarioUseCase();
+    await createUsuarioUseCase.execute({ name, email, password });
   } catch (error) {
-    return reply.status(409).send();
+    if (error instanceof UserAlreadyExistsError) {
+      return reply.status(409).send({
+        message: error.message,
+      });
+    }
+
+    return reply.status(500).send(); //TODO: fix me
   }
+
+  return reply.status(201).send();
 }
 
 /***model Usuario {
