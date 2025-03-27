@@ -4,7 +4,7 @@ import { ClientAlreadyExistsError } from "./erros/cliente-ja-existe-erro";
 
 interface CreateClientUseCaseParams {
   nome: string;
-  cpf: string;
+  cpfCnpj: string;
   telefone: string;
 }
 
@@ -17,18 +17,20 @@ export class CreateClientUseCase {
 
   async execute({
     nome,
-    cpf,
+    cpfCnpj,
     telefone,
   }: CreateClientUseCaseParams): Promise<CreateClientUseCaseResponse> {
-    const clientWithSameCpf = await this.clientRepository.findByCpf(cpf);
+    const clientWithSamecpfCnpj = await this.clientRepository.findBycpfCnpj(
+      cpfCnpj
+    );
 
-    if (clientWithSameCpf) {
+    if (clientWithSamecpfCnpj) {
       throw new ClientAlreadyExistsError();
     }
 
     const client = await this.clientRepository.create({
       nome,
-      cpf,
+      cpfCnpj,
       telefone,
     });
 

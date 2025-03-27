@@ -3,10 +3,10 @@ import { Prisma } from "@prisma/client";
 import { ClientRepository } from "../client-repository";
 
 export class PrismaClientRepository implements ClientRepository {
-  async findByCpf(cpf: string) {
+  async findBycpfCnpj(cpfCnpj: string) {
     const Client = await prisma.cliente.findUnique({
       where: {
-        cpf,
+        cpfCnpj,
       },
     });
 

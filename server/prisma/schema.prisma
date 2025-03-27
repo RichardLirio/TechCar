@@ -82,7 +82,7 @@ model OrdemEstoque {
 model Cliente {
   id             Int            @id @default(autoincrement())
   nome           String         @db.VarChar(100)
-  cpf            String         @unique @db.VarChar(14)
+  cpfCnpj        String         @unique @db.VarChar(14)
   telefone       String?        @db.VarChar(15)
   veiculos       Veiculo[]
   ordens_servico OrdemServico[]

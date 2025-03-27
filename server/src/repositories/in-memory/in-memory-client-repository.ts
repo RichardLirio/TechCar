@@ -4,8 +4,8 @@ import { ClientRepository } from "../client-repository";
 export class InMemoryClientRepository implements ClientRepository {
   public items: Cliente[] = [];
 
-  async findByCpf(cpf: string) {
-    const Client = this.items.find((item) => item.cpf === cpf);
+  async findBycpfCnpj(cpfCnpj: string) {
+    const Client = this.items.find((item) => item.cpfCnpj === cpfCnpj);
 
     if (!Client) {
       return null;
@@ -19,7 +19,7 @@ export class InMemoryClientRepository implements ClientRepository {
     const Client = {
       id: i++,
       nome: data.nome,
-      cpf: data.cpf,
+      cpfCnpj: data.cpfCnpj,
       telefone: data.telefone ?? "2799991234",
     };
 

@@ -16,26 +16,26 @@ describe("Create Client Use Case", () => {
   it("Está sendo possivel cadastrar um novo cliente", async () => {
     const { client } = await sut.execute({
       nome: "John Doe",
-      cpf: "123456166-21",
+      cpfCnpj: "123456166-21",
       telefone: "27997036211",
     });
 
-    expect(client.cpf).toEqual("123456166-21");
+    expect(client.cpfCnpj).toEqual("123456166-21");
   });
 
-  it("Não deverá ser possivel criar um cliente com mesmo cpf", async () => {
-    const cpf = "123456166-21";
+  it("Não deverá ser possivel criar um cliente com mesmo cpfCnpj", async () => {
+    const cpfCnpj = "123456166-21";
 
     await sut.execute({
       nome: "John Doe",
-      cpf: "123456166-21",
+      cpfCnpj: "123456166-21",
       telefone: "27997036211",
     });
 
     await expect(() =>
       sut.execute({
         nome: "John Doe",
-        cpf: "123456166-21",
+        cpfCnpj: "123456166-21",
         telefone: "27997036211",
       })
     ).rejects.toBeInstanceOf(ClientAlreadyExistsError);

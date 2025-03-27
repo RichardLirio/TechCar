@@ -1,5 +1,5 @@
 export class ClientAlreadyExistsError extends Error {
   constructor() {
-    super("CPF do cliente já informado.");
+    super("cpfCnpj do cliente já informado.");
   }
 }
