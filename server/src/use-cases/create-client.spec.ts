@@ -21,7 +21,7 @@ describe("Create Client Use Case", () => {
       telefone: "27997036211",
     });
 
-    expect(client.cpfCnpj).toEqual("706.782.300-56");
+    expect(client.cpfCnpj).toEqual("70678230056");
   });
 
   it("Está sendo possivel cadastrar um novo cliente com cnpj valido", async () => {
@@ -32,7 +32,7 @@ describe("Create Client Use Case", () => {
       tipo: "JURIDICA",
     });
 
-    expect(client.cpfCnpj).toEqual("30.802.836/0001-70");
+    expect(client.cpfCnpj).toEqual("30802836000170");
   });
 
   it("Não deverá ser possivel criar um cliente com mesmo cpfCnpj", async () => {

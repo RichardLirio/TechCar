@@ -1,15 +1,16 @@
-import { Cliente, TipoCliente } from "@prisma/client";
+import { Cliente } from "@prisma/client";
 import { ClientRepository } from "@/repositories/client-repository";
 import { ClientAlreadyExistsError } from "./erros/cliente-ja-existe-erro";
 import { CpfCnpjInvalidError } from "./erros/cpfCnpj-invalido";
 import { isValidCNPJ } from "@/utils/verify-cnpj";
 import { isValidCPF } from "@/utils/verify-cpf";
+import { formatCpfCnpj } from "@/value-object/CpfCnpj";
 
 interface CreateClientUseCaseParams {
   nome: string;
   cpfCnpj: string;
   telefone: string;
-  tipo?: TipoCliente;
+  tipo?: "FISICA" | "JURIDICA" | undefined;
 }
 
 interface CreateClientUseCaseResponse {
@@ -25,8 +26,10 @@ export class CreateClientUseCase {
     telefone,
     tipo,
   }: CreateClientUseCaseParams): Promise<CreateClientUseCaseResponse> {
+    const cpfCnpjFormatado = await formatCpfCnpj(cpfCnpj);
+
     const clientWithSamecpfCnpj = await this.clientRepository.findBycpfCnpj(
-      cpfCnpj
+      cpfCnpjFormatado
     );
 
     if (clientWithSamecpfCnpj) {
@@ -34,7 +37,7 @@ export class CreateClientUseCase {
     }
 
     if (tipo === "FISICA" || tipo === undefined) {
-      const cpfIsValid = await isValidCPF(cpfCnpj);
+      const cpfIsValid = await isValidCPF(cpfCnpjFormatado);
 
       if (!cpfIsValid) {
         throw new CpfCnpjInvalidError();
@@ -42,7 +45,7 @@ export class CreateClientUseCase {
     }
 
     if (tipo === "JURIDICA") {
-      const cnpjIsValid = await isValidCNPJ(cpfCnpj);
+      const cnpjIsValid = await isValidCNPJ(cpfCnpjFormatado);
 
       if (!cnpjIsValid) {
         throw new CpfCnpjInvalidError();
@@ -51,7 +54,7 @@ export class CreateClientUseCase {
 
     const client = await this.clientRepository.create({
       nome,
-      cpfCnpj,
+      cpfCnpj: cpfCnpjFormatado,
       telefone,
       tipo,
     });

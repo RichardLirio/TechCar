@@ -1,9 +1,6 @@
 import { CpfCnpjInvalidError } from "@/use-cases/erros/cpfCnpj-invalido";
 
 export async function isValidCPF(cpf: string): Promise<boolean> {
-  // Remove caracteres não numéricos
-  cpf = cpf.replace(/[^\d]+/g, "");
-
   // Verifica se tem 11 dígitos e se não é uma sequência repetida
   if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
     throw new CpfCnpjInvalidError();

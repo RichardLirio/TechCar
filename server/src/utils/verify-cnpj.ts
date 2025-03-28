@@ -1,12 +1,9 @@
 import { CpfCnpjInvalidError } from "@/use-cases/erros/cpfCnpj-invalido";
 
 export async function isValidCNPJ(cnpj: string): Promise<boolean> {
-  // Remove caracteres não numéricos
-  cnpj = cnpj.replace(/[^\d]+/g, "");
-
   // Verifica se tem 14 dígitos e se não é uma sequência repetida
   if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) {
-    return false;
+    throw new CpfCnpjInvalidError();
   }
 
   try {
@@ -21,7 +18,7 @@ export async function isValidCNPJ(cnpj: string): Promise<boolean> {
     }
     let remainder = sum % 11;
     let digit1 = remainder < 2 ? 0 : 11 - remainder;
-    if (digit1 !== parseInt(cnpj.charAt(12))) return false;
+    if (digit1 !== parseInt(cnpj.charAt(12))) throw new CpfCnpjInvalidError();
 
     // Cálculo do segundo dígito verificador
     sum = 0;
@@ -30,10 +27,10 @@ export async function isValidCNPJ(cnpj: string): Promise<boolean> {
     }
     remainder = sum % 11;
     let digit2 = remainder < 2 ? 0 : 11 - remainder;
-    if (digit2 !== parseInt(cnpj.charAt(13))) return false;
+    if (digit2 !== parseInt(cnpj.charAt(13))) throw new CpfCnpjInvalidError();
 
     return true;
   } catch (error) {
-    return false;
+    throw new CpfCnpjInvalidError();
   }
 }
