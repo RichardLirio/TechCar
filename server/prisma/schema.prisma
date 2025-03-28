@@ -83,6 +83,7 @@ model Cliente {
   id             Int            @id @default(autoincrement())
   nome           String         @db.VarChar(100)
   cpfCnpj        String         @unique @db.VarChar(14)
+  tipo           TipoCliente    @default(FISICA)
   telefone       String?        @db.VarChar(15)
   veiculos       Veiculo[]
   ordens_servico OrdemServico[]
@@ -121,4 +122,9 @@ enum Role {
 enum StatusOrdemServico {
   EM_ANDAMENTO
   FECHADA
+}
+
+enum TipoCliente {
+  JURIDICA
+  FISICA
 }

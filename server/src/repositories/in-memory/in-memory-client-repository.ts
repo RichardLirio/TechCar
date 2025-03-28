@@ -21,6 +21,7 @@ export class InMemoryClientRepository implements ClientRepository {
       nome: data.nome,
       cpfCnpj: data.cpfCnpj,
       telefone: data.telefone ?? "2799991234",
+      tipo: data.tipo ?? "FISICA",
     };
 
     this.items.push(Client);

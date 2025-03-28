@@ -2,6 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { ClientAlreadyExistsError } from "@/use-cases/erros/cliente-ja-existe-erro";
 import { makeCreateClientUseCase } from "@/use-cases/factories/make-create-client-use-case";
+import { isValidCPF } from "@/utils/verify-cpf";
 
 export async function CreateClient(
   request: FastifyRequest,
@@ -18,6 +19,8 @@ export async function CreateClient(
   );
 
   try {
+    const cpfCnpjIsValid = await isValidCPF(cpfCnpj);
+
     const createClientUseCase = makeCreateClientUseCase();
     await createClientUseCase.execute({ nome, cpfCnpj, telefone });
   } catch (error) {
