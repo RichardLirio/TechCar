@@ -60,7 +60,7 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 - **RN09:** Apenas administradores podem adicionar ou remover peças do estoque manualmente.
 
 ### 4. Clientes e Veículos
-- **RN10:** O CPF de um cliente deve ser único no sistema.
+-[x] **RN10:** O CPF de um cliente deve ser único no sistema.
 - **RN11:** Um veículo só pode ser associado a um cliente existente.
 
 ## Como Executar
