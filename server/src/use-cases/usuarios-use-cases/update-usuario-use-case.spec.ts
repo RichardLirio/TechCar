@@ -13,14 +13,14 @@ describe("Update User Use Case", () => {
   beforeEach(() => {
     usuarioRepository = new InMemoryUsersRepository();
     sut = new UpdateUserUseCase(usuarioRepository);
-  });
+  }); // Cria uma nova instância do repositório de usuários e do caso de uso antes de cada teste
 
   it("Está sendo possivel atualizar um usuario", async () => {
     const createdUser = await usuarioRepository.create({
       name: "John Doe",
       email: "johndoe@example.com",
       password_hash: await hash("123456", 6),
-    });
+    }); // Cria um novo usuário para testar a atualização
 
     const { usuario } = await sut.execute({
       id: createdUser.id,
@@ -28,10 +28,10 @@ describe("Update User Use Case", () => {
       email: "johnSilva@example.com",
       password: "hfudsi075",
       role: "ADMIN",
-    });
+    }); // Executa o caso de uso para atualizar o usuário criado
 
-    expect(usuario.name).toEqual("John Silva");
-    expect(usuario.role).toEqual("ADMIN");
+    expect(usuario.name).toEqual("John Silva"); // Verifica se o nome do usuário foi atualizado corretamente
+    expect(usuario.role).toEqual("ADMIN"); // Verifica se o nome e o papel do usuário foram atualizados corretamente
   });
 
   it("Não está sendo possivel atualizar um usuario com um id incorreto", async () => {
@@ -43,7 +43,7 @@ describe("Update User Use Case", () => {
         password: "hfudsi075",
         role: "ADMIN",
       })
-    ).rejects.toBeInstanceOf(ResourceNotFoundError);
+    ).rejects.toBeInstanceOf(ResourceNotFoundError); // Verifica se o erro retornado é do tipo ResourceNotFoundError
   });
 
   it("Não está sendo possivel atualizar um usuario com um email que ja existe", async () => {
@@ -51,13 +51,13 @@ describe("Update User Use Case", () => {
       name: "John Doe",
       email: "johndoe@example.com",
       password_hash: await hash("123456", 6),
-    });
+    }); // Cria um novo usuário para testar a atualização
 
     await usuarioRepository.create({
       name: "Joao Silva",
       email: "joaosilva@example.com",
       password_hash: await hash("123456", 6),
-    });
+    }); // Cria um segundo usuário com o mesmo email para testar a atualização
 
     await expect(() =>
       sut.execute({
@@ -67,6 +67,6 @@ describe("Update User Use Case", () => {
         password: "hfudsi075",
         role: "ADMIN",
       })
-    ).rejects.toBeInstanceOf(UserAlreadyExistsError);
+    ).rejects.toBeInstanceOf(UserAlreadyExistsError); // Verifica se o erro retornado é do tipo UserAlreadyExistsError
   });
 });

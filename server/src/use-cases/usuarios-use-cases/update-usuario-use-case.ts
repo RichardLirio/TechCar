@@ -10,11 +10,11 @@ interface UpdateUserUseCaseParams {
   email: string;
   password: string;
   role?: "ADMIN" | "USER" | undefined;
-}
+} // Cria uma interface para os parâmetros de entrada do caso de uso
 
 interface UpdateUserUseCaseResponse {
   usuario: Usuario;
-}
+} // Cria uma interface para a resposta do caso de uso
 
 export class UpdateUserUseCase {
   constructor(private usuarioRepository: UsuarioRepository) {}
@@ -28,16 +28,16 @@ export class UpdateUserUseCase {
   }: UpdateUserUseCaseParams): Promise<UpdateUserUseCaseResponse> {
     const password_hash = await hash(password, 6);
 
-    const userExists = await this.usuarioRepository.findById(id);
+    const userExists = await this.usuarioRepository.findById(id); // Verifica se o usuário existe
 
     if (!userExists) {
-      throw new ResourceNotFoundError();
+      throw new ResourceNotFoundError(); // Lança um erro se o usuário não for encontrado
     }
 
-    const userWithSameEmail = await this.usuarioRepository.findByEmail(email);
+    const userWithSameEmail = await this.usuarioRepository.findByEmail(email); // Verifica se já existe um usuário com o mesmo email
 
     if (userWithSameEmail && userWithSameEmail.id != id) {
-      throw new UserAlreadyExistsError();
+      throw new UserAlreadyExistsError(); // Lança um erro se o usuário já existir
     }
 
     const usuario = await this.usuarioRepository.update({
@@ -46,12 +46,12 @@ export class UpdateUserUseCase {
       email,
       password_hash,
       role,
-    });
+    }); // Cria um novo usuário no repositório
 
     if (!usuario) {
-      throw new ResourceNotFoundError();
+      throw new ResourceNotFoundError(); // Lança um erro se o usuário não for encontrado
     }
 
-    return { usuario };
+    return { usuario }; //Retorna o usuário atualizado
   }
 }

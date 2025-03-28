@@ -5,5 +5,5 @@ export function makeAuthenticateUsuarioUseCase() {
   const usuarioRepository = new PrismaUserRepository();
   const authenticateUsuarioUseCase = new AuthenticateUseCase(usuarioRepository);
 
-  return authenticateUsuarioUseCase;
+  return authenticateUsuarioUseCase; // Retorna uma instância do caso de uso de autenticação de usuário
 }

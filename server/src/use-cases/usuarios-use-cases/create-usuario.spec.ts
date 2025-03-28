@@ -12,8 +12,9 @@ describe("Create Use Case", () => {
   beforeEach(() => {
     usuarioRepository = new InMemoryUsersRepository();
     sut = new CreateUserUseCase(usuarioRepository);
-  });
+  }); // Cria uma nova instância do repositório de usuários e do caso de uso antes de cada teste
 
+  // Testes do caso de uso de criação de usuário
   it("Está sendo possivel cadastrar um usuario", async () => {
     const { usuario } = await sut.execute({
       name: "John Doe",
@@ -24,6 +25,7 @@ describe("Create Use Case", () => {
     expect(usuario.id).toEqual(expect.any(String));
   });
 
+  // Testa se o usuário foi criado com os dados corretos
   it("Está sendo feito o hash do password", async () => {
     const { usuario } = await sut.execute({
       name: "John Doe",
@@ -39,6 +41,7 @@ describe("Create Use Case", () => {
     expect(isPasswordCorrectlyHashed).toBe(true);
   });
 
+  // Testa se o usuário não pode ser criado com o mesmo email
   it("Não deverá ser possivel criar um usuario com mesmo email", async () => {
     const email = "johndoe@example.com";
 

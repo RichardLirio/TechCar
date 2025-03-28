@@ -10,20 +10,21 @@ import { DeleteUser } from "./delete-usuario-controller";
 import { UpdateUser } from "./update-usuario-controller";
 
 export async function usuarioRoutes(app: FastifyInstance) {
-  //logar usuario
+  //middleware para verificar o JWT
   app.post("/sessions", AuthenticateUsuario);
 
-  //token refresh
+  //middleware para verificar o JWT
   app.patch("/token/refresh", refresh);
 
   /**Rotas Autenticadas */
-  //busca dados de um usuario
+  //busca um usuario pelo id
   app.get(
     "/user/:id",
     { onRequest: [VerifyJWT, VerifyUserRole("ADMIN")] },
     getUserProfile
   );
 
+  //busca todos os usuarios
   app.get(
     "/users",
     { onRequest: [VerifyJWT, VerifyUserRole("ADMIN")] },

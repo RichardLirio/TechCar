@@ -18,14 +18,14 @@ describe("Authenticate Use Case", () => {
       name: "John Doe",
       email: "johndoe@example.com",
       password_hash: await hash("123456", 6),
-    });
+    }); //criação de uma usuario
 
     const { usuario } = await sut.execute({
       email: "johndoe@example.com",
       password: "123456",
-    });
+    }); //solicito login com as credenciais que usei para criar um usuario
 
-    expect(usuario.id).toEqual(expect.any(String));
+    expect(usuario.id).toEqual(expect.any(String)); //espero que retorne um id, mostrando que foi feito a autentição com sucesso
   });
 
   it("Não deve ser possivel se autenticar com email incorreto", async () => {
@@ -34,7 +34,7 @@ describe("Authenticate Use Case", () => {
         email: "johndoe@example.com",
         password: "123456",
       })
-    ).rejects.toBeInstanceOf(CredenciaisUsuarioInvalidaError);
+    ).rejects.toBeInstanceOf(CredenciaisUsuarioInvalidaError); //espero que quando eu informe alguma credencial incorreta de o erro especifico
   });
 
   it("Não deve ser possivel se autenticar com senha incorreta", async () => {
@@ -42,13 +42,13 @@ describe("Authenticate Use Case", () => {
       name: "John Doe",
       email: "johndoe@example.com",
       password_hash: await hash("123456", 6),
-    });
+    }); //crio um usuario
 
     await expect(() =>
       sut.execute({
         email: "johndoe@example.com",
         password: "1231233",
       })
-    ).rejects.toBeInstanceOf(CredenciaisUsuarioInvalidaError);
+    ).rejects.toBeInstanceOf(CredenciaisUsuarioInvalidaError); //espero que quando eu informe alguma credencial incorreta de o erro especifico
   });
 });

@@ -4,6 +4,7 @@ import { ClientAlreadyExistsError } from "@/use-cases/erros/cliente-ja-existe-er
 import { makeCreateClientUseCase } from "@/use-cases/factories/make-create-client-use-case";
 import { CpfCnpjInvalidError } from "@/use-cases/erros/cpfCnpj-invalido";
 
+// Controller to handle client creation
 export async function CreateClient(
   request: FastifyRequest,
   reply: FastifyReply
@@ -13,23 +14,25 @@ export async function CreateClient(
     cpfCnpj: z.string(),
     telefone: z.string().default(""),
     tipo: z.enum(["FISICA", "JURIDICA"]).default("FISICA"),
-  });
+  }); // // Define the schema for the request body using Zod
 
   const { nome, cpfCnpj, telefone, tipo } = createClientBodySchema.parse(
     request.body
-  );
+  ); // // Parse and validate the request body against the schema
 
   try {
-    const createClientUseCase = makeCreateClientUseCase();
-    await createClientUseCase.execute({ nome, cpfCnpj, telefone, tipo });
+    const createClientUseCase = makeCreateClientUseCase(); // // Create an instance of the use case
+    await createClientUseCase.execute({ nome, cpfCnpj, telefone, tipo }); // // Execute the use case with the parsed data
   } catch (error) {
     if (error instanceof ClientAlreadyExistsError) {
+      // // Check if the error is an instance of ClientAlreadyExistsError
       return reply.status(409).send({
         message: error.message,
       });
     }
 
     if (error instanceof CpfCnpjInvalidError) {
+      // // Check if the error is an instance of CpfCnpjInvalidError
       return reply.status(409).send({
         message: error.message,
       });
@@ -39,5 +42,5 @@ export async function CreateClient(
     return reply.status(500).send(); //TODO: fix me
   }
 
-  return reply.status(201).send();
+  return reply.status(201).send(); // // Send a 201 Created response if the client is created successfully
 }

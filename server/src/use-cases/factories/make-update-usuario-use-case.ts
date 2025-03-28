@@ -5,5 +5,5 @@ export function makeUpdateUsuarioUseCase() {
   const usuarioRepository = new PrismaUserRepository();
   const updateUsuarioUseCase = new UpdateUserUseCase(usuarioRepository);
 
-  return updateUsuarioUseCase;
+  return updateUsuarioUseCase; // Retorna uma instância do caso de uso de atualização de usuário
 }

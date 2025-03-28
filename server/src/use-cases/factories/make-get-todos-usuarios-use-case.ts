@@ -5,5 +5,5 @@ export function makeGetAllUsersUseCase() {
   const usuarioRepository = new PrismaUserRepository();
   const getAllUsuariosUseCase = new GetAllUsersUseCase(usuarioRepository);
 
-  return getAllUsuariosUseCase;
+  return getAllUsuariosUseCase; // Retorna uma instância do caso de uso de obtenção de todos os usuários
 }

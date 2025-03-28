@@ -5,5 +5,5 @@ export function makeDeleteUsuarioUseCase() {
   const usuarioRepository = new PrismaUserRepository();
   const deleteUsuarioUseCase = new DeleteUserUseCase(usuarioRepository);
 
-  return deleteUsuarioUseCase;
+  return deleteUsuarioUseCase; // Retorna uma instância do caso de uso de deleção de usuário
 }

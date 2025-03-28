@@ -8,6 +8,6 @@ app
     host: "0.0.0.0",
   })
   .then(async () => {
-    await seed();
+    await seed(); //cria usuario admin padrão para o sistema
     console.log("🚀 HTTP Server is Running!");
   });

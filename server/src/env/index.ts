@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { z } from "zod";
 
+// This file is responsible for loading and validating environment variables using Zod
 const envSchema = z.object({
   NODE_ENV: z.enum(["dev", "test", "production"]).default("dev"),
   JWT_SECRET: z.string(),

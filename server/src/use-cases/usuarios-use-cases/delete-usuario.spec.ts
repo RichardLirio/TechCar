@@ -13,7 +13,7 @@ describe("Delete User Use Case", () => {
     usuarioRepository = new InMemoryUsersRepository();
     sut = new DeleteUserUseCase(usuarioRepository);
   });
-
+  // Testes do caso de uso de exclusão de usuário
   it("Está sendo possivel excluir um usuario", async () => {
     const createdUser = await usuarioRepository.create({
       name: "John Doe",
@@ -29,7 +29,7 @@ describe("Delete User Use Case", () => {
 
     expect(usuario).toBeNull();
   });
-
+  // Testa se o usuário não pode ser excluído com um id incorreto
   it("Não está sendo possivel deletar um usuario com um id incorreto", async () => {
     await expect(() =>
       sut.execute({

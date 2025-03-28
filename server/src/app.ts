@@ -7,8 +7,8 @@ import fastifyCookie from "@fastify/cookie";
 import fastifyCors from "@fastify/cors";
 import { clientRoutes } from "./http/controllers/cliente/routes";
 
-export const app = fastify();
-
+export const app = fastify(); //instacia o app
+//registra o fastify jwt para autenticação
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
   cookie: {
@@ -27,14 +27,14 @@ app.register(fastifyCors, {
 
 app.register(fastifyCookie);
 
-app.register(usuarioRoutes);
-app.register(clientRoutes);
+app.register(usuarioRoutes); //rotas de usuario
+app.register(clientRoutes); //rotas de clientes
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
     return reply
       .status(400)
-      .send({ message: "Validation error.", issues: error.format() });
+      .send({ message: "Validation error.", issues: error.format() }); //erro quando falta alguma variavel de ambiente
   }
 
   if (env.NODE_ENV !== "production") {

@@ -5,5 +5,5 @@ export function makeCreateClientUseCase() {
   const ClientRepository = new PrismaClientRepository();
   const createUseCase = new CreateClientUseCase(ClientRepository);
 
-  return createUseCase;
+  return createUseCase; // Retorna uma instância do caso de uso de criação de cliente
 }
