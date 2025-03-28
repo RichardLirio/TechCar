@@ -36,17 +36,21 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 
 ### 4. Gestão de Usuários
 - [X] **RF13:** O sistema deve suportar autenticação de usuários com email, senha e papel (admin ou user).
-- [X] **RF14:** Apenas usuários autenticados podem acessar o sistema.
+- [X] **RF14:** Apenas usuários com papel "admin" podem manipular dados dos usuários.
+- [X] **RF15:** O sistema deve permitir editar os dados de um usuário.
+- [X] **RF16:** O sistema deve permitir excluir um usuário.
+- [X] **RF17:** O sistema deve permitir listar os usuários.
+- [X] **RF18:** O sistema deve permitir cadastras novos usuários.
 
 ### 5. Relatórios
-- **RF15:** O sistema deve gerar relatórios de ordens concluídas, faturamento e serviços por mecânico (futuro).
+- **RF19:** O sistema deve gerar relatórios de ordens concluídas, faturamento e serviços por mecânico (futuro).
 
 ## Regras de Negócio
 
 ### 1. Autenticação e Autorização
 - **RN01:** Apenas usuários com papel "admin" podem aplicar descontos em ordens de serviço.
 - **RN02:** Usuários comuns ("user") podem criar e visualizar ordens, mas não alterar descontos.
-- **RN03:** A autenticação deve ser feita via JWT, com token gerado no login.
+- [x] **RN03:** A autenticação deve ser feita via JWT, com token gerado no login.
 
 ### 2. Ordens de Serviço
 - **RN04:** O valor total da ordem é calculado pelo frontend como:
@@ -60,7 +64,7 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 - **RN09:** Apenas administradores podem adicionar ou remover peças do estoque manualmente.
 
 ### 4. Clientes e Veículos
--[x] **RN10:** O CPF de um cliente deve ser único no sistema.
+-[x] **RN10:** O CPF ou CNPJ de um cliente deve ser único no sistema.
 - **RN11:** Um veículo só pode ser associado a um cliente existente.
 
 ## Como Executar
