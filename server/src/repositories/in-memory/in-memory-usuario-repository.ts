@@ -5,6 +5,20 @@ import { randomUUID } from "node:crypto";
 export class InMemoryUsersRepository implements UsuarioRepository {
   public items: Usuario[] = [];
 
+  async deleteById(id: string) {
+    const user = this.items.find((item) => item.id === id);
+
+    if (!user) {
+      return null;
+    }
+
+    const userIndex = this.items.findIndex((item) => item.id === id);
+
+    this.items.splice(userIndex, 1);
+
+    return user;
+  }
+
   async findMany() {
     return this.items;
   }
