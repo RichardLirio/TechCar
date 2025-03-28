@@ -6,4 +6,5 @@ export interface UsuarioRepository {
   findMany(): Promise<Usuario[]>;
   create(data: Prisma.UsuarioCreateInput): Promise<Usuario>;
   deleteById(userId: string): Promise<Usuario | null>;
+  update(data: Prisma.UsuarioCreateInput): Promise<Usuario | null>;
 }

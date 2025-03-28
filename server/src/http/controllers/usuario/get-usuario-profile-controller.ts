@@ -33,6 +33,6 @@ export async function getUserProfile(
       });
     }
 
-    return reply.status(204).send();
+    return reply.status(500).send(); //TODO: fix me
   }
 }

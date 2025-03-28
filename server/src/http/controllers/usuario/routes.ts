@@ -7,6 +7,7 @@ import { getUserProfile } from "./get-usuario-profile-controller";
 import { VerifyUserRole } from "@/http/middlewares/verify-user-role";
 import { getAllUsers } from "./get-todos-usuarios-controller";
 import { DeleteUser } from "./delete-usuario-controller";
+import { UpdateUser } from "./update-usuario-controller";
 
 export async function usuarioRoutes(app: FastifyInstance) {
   //logar usuario
@@ -41,5 +42,12 @@ export async function usuarioRoutes(app: FastifyInstance) {
     "/user/:id",
     { onRequest: [VerifyJWT, VerifyUserRole("ADMIN")] },
     DeleteUser
+  );
+
+  //Deleta um usuario
+  app.patch(
+    "/user/:id",
+    { onRequest: [VerifyJWT, VerifyUserRole("ADMIN")] },
+    UpdateUser
   );
 }

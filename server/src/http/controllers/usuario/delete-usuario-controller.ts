@@ -25,6 +25,6 @@ export async function DeleteUser(request: FastifyRequest, reply: FastifyReply) {
       });
     }
 
-    return reply.status(500);
+    return reply.status(500).send();
   }
 }
