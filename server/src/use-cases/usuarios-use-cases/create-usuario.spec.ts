@@ -3,7 +3,7 @@ import { CreateUserUseCase } from "./create-usuario";
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-usuario-repository";
 import { compare } from "bcryptjs";
-import { UserAlreadyExistsError } from "./erros/usuario-ja-existe-erro";
+import { UserAlreadyExistsError } from "../erros/usuario-ja-existe-erro";
 
 let usuarioRepository: UsuarioRepository;
 let sut: CreateUserUseCase;

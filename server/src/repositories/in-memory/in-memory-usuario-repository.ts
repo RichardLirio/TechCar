@@ -5,6 +5,16 @@ import { randomUUID } from "node:crypto";
 export class InMemoryUsersRepository implements UsuarioRepository {
   public items: Usuario[] = [];
 
+  async findById(id: string) {
+    const user = this.items.find((item) => item.id === id);
+
+    if (!user) {
+      return null;
+    }
+
+    return user;
+  }
+
   async findByEmail(email: string) {
     const usuario = this.items.find((item) => item.email === email);
 

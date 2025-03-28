@@ -1,7 +1,7 @@
 import { Cliente } from "@prisma/client";
 import { ClientRepository } from "@/repositories/client-repository";
-import { ClientAlreadyExistsError } from "./erros/cliente-ja-existe-erro";
-import { CpfCnpjInvalidError } from "./erros/cpfCnpj-invalido";
+import { ClientAlreadyExistsError } from "../erros/cliente-ja-existe-erro";
+import { CpfCnpjInvalidError } from "../erros/cpfCnpj-invalido";
 import { isValidCNPJ } from "@/utils/verify-cnpj";
 import { isValidCPF } from "@/utils/verify-cpf";
 import { formatCpfCnpj } from "@/value-object/CpfCnpj";

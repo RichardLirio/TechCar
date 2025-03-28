@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ClientRepository } from "@/repositories/client-repository";
 import { InMemoryClientRepository } from "@/repositories/in-memory/in-memory-client-repository";
+import { ClientAlreadyExistsError } from "../erros/cliente-ja-existe-erro";
+import { CpfCnpjInvalidError } from "../erros/cpfCnpj-invalido";
 import { CreateClientUseCase } from "./create-client";
-import { ClientAlreadyExistsError } from "./erros/cliente-ja-existe-erro";
-import { CpfCnpjInvalidError } from "./erros/cpfCnpj-invalido";
 
 let clientRepository: ClientRepository;
 let sut: CreateClientUseCase;

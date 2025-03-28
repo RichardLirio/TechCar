@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from "vitest";
 import { hash } from "bcryptjs";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-usuario-repository";
 import { AuthenticateUseCase } from "./authenticate";
-import { CredenciaisUsuarioInvalidaError } from "./erros/credencias-usuario-invalidas";
+import { CredenciaisUsuarioInvalidaError } from "../erros/credencias-usuario-invalidas";
 
 let usersRepository: InMemoryUsersRepository;
 let sut: AuthenticateUseCase; //sut -> sistem under test variavel global para a principal variavel que vai ser testada

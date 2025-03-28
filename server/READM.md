@@ -16,8 +16,8 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 ## Requisitos Funcionais
 
 ### 1. Cadastro de Clientes e Veículos
-- [x]**RF01:** O sistema deve permitir o cadastro de clientes com nome, CPF e telefone (opcional).
-- [ ] Realizar verificação do cpf e cnpj para saber se é valido.
+- [x] **RF01:** O sistema deve permitir o cadastro de clientes com nome, CPF e telefone (opcional).
+- [x] **RF01.1:** Realizar verificação do cpf e cnpj para saber se é valido.
 - **RF02:** O sistema deve permitir o cadastro de veículos associados a um cliente, com placa, modelo, marca e ano (opcional).
 - **RF03:** Usuários podem visualizar, editar e excluir clientes e veículos.
 
@@ -62,21 +62,6 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 ### 4. Clientes e Veículos
 - **RN10:** O CPF de um cliente deve ser único no sistema.
 - **RN11:** Um veículo só pode ser associado a um cliente existente.
-
-## Estrutura do Projeto
-
-### Backend
-- **Diretórios:**
-  - `src/interfaces/`: Interfaces para repositórios e serviços (SOLID).
-  - `src/services/`: Lógica de negócio (ex.: `OrdemServicoService`).
-  - `src/repositories/`: Implementações de acesso ao banco (ex.: `PrismaOrdemServicoRepository`).
-  - `src/controllers/`: Controladores Express para rotas da API.
-  - `prisma/`: Arquivo `schema.prisma` e migrações.
-
-### Frontend
-- **Diretórios:**
-  - `src/components/`: Componentes React (ex.: `NovaOrdem.tsx`).
-  - `src/services/`: Chamadas à API (ex.: via `axios`).
 
 ## Como Executar
 
