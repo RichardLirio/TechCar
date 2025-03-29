@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { Cliente, Prisma } from "@prisma/client";
 import { ClienteRepository } from "../cliente-repository";
 /// Define a classe PrismaClientRepository que implementa a interface ClientRepository
 /// Essa classe é responsável por interagir com o banco de dados usando o Prisma
@@ -13,6 +13,15 @@ export class PrismaClientRepository implements ClienteRepository {
     });
 
     return Client; // Retorna o cliente encontrado ou null se não existir
+  }
+
+  findById(id: string) {
+    // Busca um cliente pelo ID no banco de dados
+    return prisma.cliente.findUnique({
+      where: {
+        id: Number(id),
+      },
+    });
   }
 
   async create(data: Prisma.ClienteCreateInput) {
