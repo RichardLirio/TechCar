@@ -1,9 +1,9 @@
 import { PrismaClientRepository } from "@/repositories/prisma/prisma-client-repository";
-import { CreateClientUseCase } from "../clientes-use-cases/create-client";
+import { CreateClienteUseCase } from "../clientes-use-cases/create-cliente";
 
 export function makeCreateClientUseCase() {
   const ClientRepository = new PrismaClientRepository();
-  const createUseCase = new CreateClientUseCase(ClientRepository);
+  const createUseCase = new CreateClienteUseCase(ClientRepository);
 
   return createUseCase; // Retorna uma instância do caso de uso de criação de cliente
 }

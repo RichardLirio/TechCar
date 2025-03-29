@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
-import { ClientRepository } from "../client-repository";
+import { ClienteRepository } from "../cliente-repository";
 /// Define a classe PrismaClientRepository que implementa a interface ClientRepository
 /// Essa classe é responsável por interagir com o banco de dados usando o Prisma
-export class PrismaClientRepository implements ClientRepository {
+export class PrismaClientRepository implements ClienteRepository {
   async findBycpfCnpj(cpfCnpj: string) {
     // Busca um cliente pelo CPF ou CNPJ no banco de dados
     const Client = await prisma.cliente.findUnique({

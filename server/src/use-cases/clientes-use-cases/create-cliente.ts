@@ -1,31 +1,31 @@
 import { Cliente } from "@prisma/client";
-import { ClientRepository } from "@/repositories/client-repository";
+import { ClienteRepository } from "@/repositories/cliente-repository";
 import { ClientAlreadyExistsError } from "../erros/cliente-ja-existe-erro";
 import { CpfCnpjInvalidError } from "../erros/cpfCnpj-invalido";
 import { isValidCNPJ } from "@/utils/verify-cnpj";
 import { isValidCPF } from "@/utils/verify-cpf";
 import { formatCpfCnpj } from "@/value-object/CpfCnpj";
 
-interface CreateClientUseCaseParams {
+interface CreateClienteUseCaseParams {
   nome: string;
   cpfCnpj: string;
   telefone: string;
   tipo?: "FISICA" | "JURIDICA" | undefined;
 } // Cria uma interface para os parâmetros de entrada do caso de uso
 
-interface CreateClientUseCaseResponse {
-  client: Cliente;
+interface CreateClienteUseCaseResponse {
+  cliente: Cliente;
 } // Cria uma interface para a resposta do caso de uso
 
-export class CreateClientUseCase {
-  constructor(private clientRepository: ClientRepository) {}
+export class CreateClienteUseCase {
+  constructor(private clientRepository: ClienteRepository) {}
 
   async execute({
     nome,
     cpfCnpj,
     telefone,
     tipo,
-  }: CreateClientUseCaseParams): Promise<CreateClientUseCaseResponse> {
+  }: CreateClienteUseCaseParams): Promise<CreateClienteUseCaseResponse> {
     const cpfCnpjFormatado = await formatCpfCnpj(cpfCnpj); // Formata o CPF ou CNPJ para o padrão correto
 
     const clientWithSamecpfCnpj = await this.clientRepository.findBycpfCnpj(
@@ -54,13 +54,13 @@ export class CreateClientUseCase {
       } // Lança um erro se o CNPJ não for válido
     }
 
-    const client = await this.clientRepository.create({
+    const cliente = await this.clientRepository.create({
       nome,
       cpfCnpj: cpfCnpjFormatado,
       telefone,
       tipo,
     }); // Cria um novo cliente no repositório
 
-    return { client }; // Retorna o cliente criado
+    return { cliente }; // Retorna o cliente criado
   }
 }
