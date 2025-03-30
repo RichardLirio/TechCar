@@ -29,6 +29,11 @@ export class InMemoryClientRepository implements ClienteRepository {
     return cliente; // Retorna o cliente encontrado ou null se não existir
   }
 
+  async findMany() {
+    // Busca todos os clientes
+    return this.items; // Retorna a lista de clientes encontrados
+  }
+
   async create(data: Prisma.ClienteCreateInput) {
     // Cria um novo cliente em memória
     let i = this.items.length;

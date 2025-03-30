@@ -24,6 +24,13 @@ export class PrismaClientRepository implements ClienteRepository {
     });
   }
 
+  async findMany() {
+    // Busca todos os clientes no banco de dados
+    const Client = await prisma.cliente.findMany();
+
+    return Client; // Retorna a lista de clientes encontrados
+  }
+
   async create(data: Prisma.ClienteCreateInput) {
     // Cria um novo cliente no banco de dados
     const Client = await prisma.cliente.create({
