@@ -49,4 +49,17 @@ export class InMemoryClientRepository implements ClienteRepository {
 
     return Client; // Retorna o cliente criado
   }
+
+  async deleteById(id: string) {
+    // Deleta um cliente pelo ID
+    const index = this.items.findIndex((item) => item.id === Number(id)); // Encontra o índice do cliente pelo ID
+
+    if (index === -1) {
+      return null; // Se o cliente não for encontrado, retorna null
+    }
+
+    const [Client] = this.items.splice(index, 1); // Remove o cliente da lista de clientes em memória
+
+    return Client; // Retorna o cliente removido ou null se não existir
+  }
 }
