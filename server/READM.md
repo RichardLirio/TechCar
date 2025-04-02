@@ -16,10 +16,10 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 ## Requisitos Funcionais
 
 ### 1. Cadastro de Clientes e Veículos
-- [ ] **RF01:** O sistema deve permitir operações CRUD de clientes. Cadastro, read, update e delete.
+- [x] **RF01:** O sistema deve permitir operações CRUD de clientes. Cadastro, read, update e delete.
 - [x] **RF01.1:** Realizar verificação do cpf e cnpj para saber se é valido.
 - **RF02:** O sistema deve permitir o cadastro de veículos associados a um cliente, com placa, modelo, marca e ano (opcional).
-- **RF03:** Usuários podem visualizar, editar e excluir clientes e veículos.
+- [x] **RF03:** Usuários podem visualizar, editar e excluir clientes e veículos.
 
 ### 2. Gerenciamento de Ordens de Serviço
 - **RF04:** Usuários podem criar ordens de serviço associadas a um cliente e veículo.
