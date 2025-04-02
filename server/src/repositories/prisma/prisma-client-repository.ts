@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { Cliente, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { ClienteRepository } from "../cliente-repository";
 /// Define a classe PrismaClientRepository que implementa a interface ClientRepository
 /// Essa classe é responsável por interagir com o banco de dados usando o Prisma

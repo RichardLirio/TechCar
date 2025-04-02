@@ -2,6 +2,8 @@ import { Veiculo } from "@prisma/client";
 import { VeiculoRepository } from "@/repositories/veiculo-repository";
 import { formatarPlaca } from "@/value-object/PlacaVeiculos";
 import { VeiculoAlreadyExistsError } from "../erros/veiculo-ja-existe-erro";
+import { ClienteRepository } from "@/repositories/cliente-repository";
+import { ResourceNotFoundError } from "../erros/recurso-nao-encontrado";
 
 interface CreateVeiculoUseCaseParams {
   clienteId: number;
@@ -16,7 +18,10 @@ interface CreateVeiculoUseCaseResponse {
 } // Cria uma interface para a resposta do caso de uso
 
 export class CreateVeiculoUseCase {
-  constructor(private veiculoRepository: VeiculoRepository) {}
+  constructor(
+    private veiculoRepository: VeiculoRepository,
+    private clienteRepository: ClienteRepository
+  ) {}
 
   async execute({
     clienteId,
@@ -34,6 +39,12 @@ export class CreateVeiculoUseCase {
     if (veiculoComMesmaPlaca) {
       throw new VeiculoAlreadyExistsError();
     } // Lança um erro se o Veiculo já existir
+
+    const clienteExiste = await this.clienteRepository.findById(clienteId); //procura pelo id informado do cliente se ele existe
+
+    if (!clienteExiste) {
+      throw new ResourceNotFoundError(); //retorna erro de recurso não encontrado
+    }
 
     const veiculo = await this.veiculoRepository.create({
       clienteId,
