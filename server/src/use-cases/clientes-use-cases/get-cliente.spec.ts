@@ -1,10 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { hash } from "bcryptjs";
 import { ResourceNotFoundError } from "../erros/recurso-nao-encontrado";
 import { ClienteRepository } from "@/repositories/cliente-repository";
 import { GetClienteUseCase } from "./get-cliente";
 import { InMemoryClientRepository } from "@/repositories/in-memory/in-memory-client-repository";
-import { number } from "zod";
 
 let clienteRepository: ClienteRepository;
 let sut: GetClienteUseCase;
