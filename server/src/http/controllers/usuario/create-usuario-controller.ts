@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { makeCreateUsuarioUseCase } from "@/use-cases/factories/make-create-usuario-use-case";
 import { UserAlreadyExistsError } from "@/use-cases/erros/usuario-ja-existe-erro";
+import { makeCreateUsuarioUseCase } from "@/use-cases/factories/usuarios/make-create-usuario-use-case";
 
 // Controller to handle user creation
 export async function CreateUser(request: FastifyRequest, reply: FastifyReply) {

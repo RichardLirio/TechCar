@@ -1,6 +1,6 @@
 import { ResourceNotFoundError } from "@/use-cases/erros/recurso-nao-encontrado";
 import { UserAlreadyExistsError } from "@/use-cases/erros/usuario-ja-existe-erro";
-import { makeUpdateUsuarioUseCase } from "@/use-cases/factories/make-update-usuario-use-case";
+import { makeUpdateUsuarioUseCase } from "@/use-cases/factories/usuarios/make-update-usuario-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 

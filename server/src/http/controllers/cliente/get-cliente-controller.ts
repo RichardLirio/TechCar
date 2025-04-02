@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from "@/use-cases/erros/recurso-nao-encontrado";
-import { makeGetClienteUseCase } from "@/use-cases/factories/make-get-cliente-use-case";
+import { makeGetClienteUseCase } from "@/use-cases/factories/clientes/make-get-cliente-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 

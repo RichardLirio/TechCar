@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { ClientAlreadyExistsError } from "@/use-cases/erros/cliente-ja-existe-erro";
-import { makeCreateClientUseCase } from "@/use-cases/factories/make-create-client-use-case";
 import { CpfCnpjInvalidError } from "@/use-cases/erros/cpfCnpj-invalido";
+import { makeCreateClientUseCase } from "@/use-cases/factories/clientes/make-create-client-use-case";
 
 // Controller to handle client creation
 export async function CreateClient(

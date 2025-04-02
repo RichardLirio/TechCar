@@ -1,4 +1,4 @@
-import { makeGetAllUsersUseCase } from "@/use-cases/factories/make-get-todos-usuarios-use-case";
+import { makeGetAllUsersUseCase } from "@/use-cases/factories/usuarios/make-get-todos-usuarios-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 /// Controller to handle fetching all users

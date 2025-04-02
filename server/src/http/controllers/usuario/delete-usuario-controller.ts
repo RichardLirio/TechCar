@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from "@/use-cases/erros/recurso-nao-encontrado";
-import { makeDeleteUsuarioUseCase } from "@/use-cases/factories/make-delete-usuario-use-case";
+import { makeDeleteUsuarioUseCase } from "@/use-cases/factories/usuarios/make-delete-usuario-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 

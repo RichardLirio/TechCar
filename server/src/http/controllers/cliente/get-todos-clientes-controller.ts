@@ -1,4 +1,4 @@
-import { makeGetAllClientesUseCase } from "@/use-cases/factories/make-get-todos-clientes-use-case";
+import { makeGetAllClientesUseCase } from "@/use-cases/factories/clientes/make-get-todos-clientes-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 /// Controller to handle fetching all clientes
