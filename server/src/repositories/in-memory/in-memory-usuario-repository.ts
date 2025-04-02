@@ -65,7 +65,7 @@ export class InMemoryUsersRepository implements UsuarioRepository {
     return usuario; // Retorna o usuário criado
   }
 
-  async update(data: Prisma.UsuarioCreateInput) {
+  async update(data: Prisma.UsuarioUpdateInput) {
     // Atualiza um usuário em memória
     const user = this.items.find((item) => item.id === data.id); // Encontra o usuário pelo ID
 

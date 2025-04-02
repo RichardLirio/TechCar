@@ -15,11 +15,11 @@ export class PrismaClientRepository implements ClienteRepository {
     return Client; // Retorna o cliente encontrado ou null se não existir
   }
 
-  findById(id: string) {
+  findById(id: number) {
     // Busca um cliente pelo ID no banco de dados
     return prisma.cliente.findUnique({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
   }
@@ -38,5 +38,28 @@ export class PrismaClientRepository implements ClienteRepository {
     });
 
     return Client; // Retorna o cliente criado
+  }
+
+  async update(data: Prisma.ClienteUpdateInput, id: number) {
+    // Atualiza um cliente no banco de dados
+    const cliente = prisma.cliente.update({
+      where: {
+        id,
+      },
+      data,
+    });
+
+    return cliente; // Retorna o cliente encontrado ou null se não existir
+  }
+
+  async deleteById(id: number) {
+    // Busca um cliente pelo ID no banco de dados
+    const cliente = await prisma.cliente.delete({
+      where: {
+        id,
+      },
+    });
+
+    return cliente; // Retorna o cliente encontrado ou null se não existir
   }
 }

@@ -23,10 +23,10 @@ describe("Delete Cliente Use Case", () => {
     });
 
     await sut.execute({
-      clienteId: String(createdCliente.id),
+      clienteId: createdCliente.id,
     });
 
-    const cliente = await clienteRepository.findById(String(createdCliente.id));
+    const cliente = await clienteRepository.findById(createdCliente.id);
 
     expect(cliente).toBeNull();
   });
@@ -34,7 +34,7 @@ describe("Delete Cliente Use Case", () => {
   it("Não está sendo possivel deletar um cliente com um id incorreto", async () => {
     await expect(() =>
       sut.execute({
-        clienteId: "non-existing-id",
+        clienteId: 0,
       })
     ).rejects.toBeInstanceOf(ResourceNotFoundError);
   });

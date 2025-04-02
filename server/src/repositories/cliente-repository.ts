@@ -3,9 +3,9 @@ import { Prisma, Cliente } from "@prisma/client";
 /// Essa interface define os métodos que o repositório deve implementar
 export interface ClienteRepository {
   findBycpfCnpj(cpfCnpj: string): Promise<Cliente | null>;
-  findById(id: string): Promise<Cliente | null>;
+  findById(id: number): Promise<Cliente | null>;
   findMany(): Promise<Cliente[]>;
-  deleteById(id: string): Promise<Cliente | null>;
+  deleteById(id: number): Promise<Cliente | null>;
   create(data: Prisma.ClienteCreateInput): Promise<Cliente>;
-  update(data: Prisma.ClienteUpdateInput): Promise<Cliente | null>;
+  update(data: Prisma.ClienteUpdateInput, id: number): Promise<Cliente | null>;
 }

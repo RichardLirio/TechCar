@@ -4,7 +4,7 @@ import { ResourceNotFoundError } from "../erros/recurso-nao-encontrado";
 import { ClienteRepository } from "@/repositories/cliente-repository";
 /// Cria uma interface para os parâmetros de entrada do caso de uso
 interface DeleteClienteUseCaseParams {
-  clienteId: string;
+  clienteId: number;
 }
 
 interface DeleteClienteUseCaseResponse {

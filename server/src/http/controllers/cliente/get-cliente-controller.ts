@@ -5,7 +5,7 @@ import { z } from "zod";
 
 export async function GetCliente(request: FastifyRequest, reply: FastifyReply) {
   const validateClienteParamsSchema = z.object({
-    id: z.string(), // // Definindo o esquema para os parâmetros da requisição usando Zod
+    id: z.coerce.number(), // // Definindo o esquema para os parâmetros da requisição usando Zod
   }); // // Definindo o esquema para os parâmetros da requisição usando Zod
 
   const { id } = validateClienteParamsSchema.parse(request.params); // // Fazendo o parse e validando os parâmetros da requisição de acordo com o esquema definido

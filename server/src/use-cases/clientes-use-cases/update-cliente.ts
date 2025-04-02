@@ -5,7 +5,7 @@ import { ClienteRepository } from "@/repositories/cliente-repository";
 import { ClientAlreadyExistsError } from "../erros/cliente-ja-existe-erro";
 
 interface UpdateClienteUseCaseParams {
-  id: string;
+  id: number;
   nome: string;
   cpfCnpj: string;
   telefone: string;
@@ -34,18 +34,21 @@ export class UpdateClienteUseCase {
 
     const ClienteWithSameCpfCnpj = await this.clienteRepository.findBycpfCnpj(
       cpfCnpj
-    ); // Verifica se já existe um cliente com o mesmo email
+    ); // Verifica se já existe um cliente com o mesmo cnpj
 
     if (ClienteWithSameCpfCnpj && ClienteWithSameCpfCnpj.id != Number(id)) {
       throw new ClientAlreadyExistsError(); // Lança um erro se o cliente já existir
     }
 
-    const cliente = await this.clienteRepository.update({
-      nome,
-      cpfCnpj,
-      telefone,
-      tipo,
-    }); // Cria um novo cliente no repositório
+    const cliente = await this.clienteRepository.update(
+      {
+        nome,
+        cpfCnpj,
+        telefone,
+        tipo,
+      },
+      id
+    ); // Cria um novo cliente no repositório
 
     if (!cliente) {
       throw new ResourceNotFoundError(); // Lança um erro se o cliente não for encontrado

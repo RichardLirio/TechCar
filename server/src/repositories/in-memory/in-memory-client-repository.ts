@@ -17,10 +17,10 @@ export class InMemoryClientRepository implements ClienteRepository {
     return Client; // Retorna o cliente encontrado ou null se não existir
   }
 
-  async findById(id: string) {
+  async findById(id: number) {
     // Busca um cliente pelo ID
 
-    const cliente = this.items.find((item) => item.id === Number(id)); // Encontra o usuário pelo ID
+    const cliente = this.items.find((item) => item.id === id); // Encontra o usuário pelo ID
 
     if (!cliente) {
       return null; // Se o cliente não for encontrado, retorna null
@@ -50,9 +50,9 @@ export class InMemoryClientRepository implements ClienteRepository {
     return Client; // Retorna o cliente criado
   }
 
-  async deleteById(id: string) {
+  async deleteById(id: number) {
     // Deleta um cliente pelo ID
-    const index = this.items.findIndex((item) => item.id === Number(id)); // Encontra o índice do cliente pelo ID
+    const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do cliente pelo ID
 
     if (index === -1) {
       return null; // Se o cliente não for encontrado, retorna null
@@ -63,9 +63,9 @@ export class InMemoryClientRepository implements ClienteRepository {
     return Client; // Retorna o cliente removido ou null se não existir
   }
 
-  async update(data: Prisma.ClienteUpdateInput) {
+  async update(data: Prisma.ClienteUpdateInput, id: number) {
     // Atualiza um cliente em memória
-    const cliente = this.items.find((item) => item.cpfCnpj === data.cpfCnpj); // Encontra o cliente pelo ID
+    const cliente = this.items.find((item) => item.id === id); // Encontra o cliente pelo ID
 
     if (!cliente) {
       // Se o cliente não for encontrado, retorna null

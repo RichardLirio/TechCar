@@ -3,7 +3,7 @@ import { ResourceNotFoundError } from "../erros/recurso-nao-encontrado";
 import { ClienteRepository } from "@/repositories/cliente-repository";
 
 interface GetClienteCaseParams {
-  clienteId: string;
+  clienteId: number;
 } // Cria uma interface para os parâmetros de entrada do caso de uso
 
 interface GetClienteCaseResponse {

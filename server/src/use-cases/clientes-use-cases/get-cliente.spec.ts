@@ -24,7 +24,7 @@ describe("Get Cliente Use Case", () => {
     }); // Cria um novo cliente para testar a busca
 
     const { cliente } = await sut.execute({
-      clienteId: String(createdCliente.id),
+      clienteId: createdCliente.id,
     }); // Executa o caso de uso para buscar o cliente criado
 
     expect(cliente.id).toEqual(expect.any(Number)); // Verifica se o id do cliente é um número
@@ -34,7 +34,7 @@ describe("Get Cliente Use Case", () => {
   it("Não está sendo possivel buscar dados de um cliente com um id incorreto", async () => {
     await expect(() =>
       sut.execute({
-        clienteId: "non-existing-id",
+        clienteId: 0,
       })
     ).rejects.toBeInstanceOf(ResourceNotFoundError); // Verifica se o erro retornado é do tipo ResourceNotFoundError
   });
