@@ -1,6 +1,4 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-usuario-repository";
-import { hash } from "bcryptjs";
 import { ClienteRepository } from "@/repositories/cliente-repository";
 import { GetAllClientesUseCase } from "./get-todos-clientes";
 import { InMemoryClientRepository } from "@/repositories/in-memory/in-memory-client-repository";

@@ -29,6 +29,11 @@ export class InMemoryVeiculoRepository implements VeiculoRepository {
     return veiculo; // Retorna o Veiculo criado
   }
 
+  async findMany(): Promise<Veiculo[]> {
+    // Busca todos os veiculos
+    return this.items; // Retorna a lista de veiculos encontrados
+  }
+
   async findById(id: number) {
     // Busca um veiculo pelo ID
 
