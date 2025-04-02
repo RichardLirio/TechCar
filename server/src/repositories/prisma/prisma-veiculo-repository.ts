@@ -21,6 +21,15 @@ export class PrismaVeiculoRepository implements VeiculoRepository {
       where: {
         id: id,
       },
+      select: {
+        id: true,
+        clienteId: true,
+        placa: true,
+        modelo: true,
+        marca: true,
+        ano: true,
+        ordens_servico: true,
+      },
     });
   }
 
