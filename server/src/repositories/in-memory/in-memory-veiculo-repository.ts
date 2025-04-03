@@ -58,4 +58,18 @@ export class InMemoryVeiculoRepository implements VeiculoRepository {
 
     return veiculo; // Retorna o veiculo encontrado ou null se não existir
   }
+
+  async update(data: Prisma.VeiculoUncheckedUpdateInput) {
+    // Atualiza um veiculo em memória
+    const veiculo = this.items.find((item) => item.id === data.id); // Encontra o veiculo pelo ID
+
+    if (!veiculo) {
+      // Se o veiculo não for encontrado, retorna null
+      return null;
+    }
+
+    Object.assign(veiculo, data); // Atualiza os dados do veiculo encontrado
+
+    return veiculo; // Retorna o veiculo encontrado ou null se não existir
+  }
 }

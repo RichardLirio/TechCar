@@ -1,6 +1,5 @@
 import { Cliente } from "@prisma/client";
 import { ResourceNotFoundError } from "../erros/recurso-nao-encontrado";
-import { UserAlreadyExistsError } from "../erros/usuario-ja-existe-erro";
 import { ClienteRepository } from "@/repositories/cliente-repository";
 import { ClientAlreadyExistsError } from "../erros/cliente-ja-existe-erro";
 
