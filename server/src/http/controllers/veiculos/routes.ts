@@ -4,6 +4,7 @@ import { CreateVeiculo } from "./create-veiculo-controller";
 import { GetVeiculo } from "./get-veiculo-controller";
 import { getAllveiculos } from "./get-todos-veiculos-controller";
 import { DeleteVeiculo } from "./delete-veiculo-controller";
+import { Updateveiculo } from "./update-veiculo-controller";
 
 export async function veiculoRoutes(app: FastifyInstance) {
   app.addHook("onRequest", VerifyJWT); // middleware para verificar o JWT
@@ -16,5 +17,5 @@ export async function veiculoRoutes(app: FastifyInstance) {
 
   app.delete("/veiculo/:id", DeleteVeiculo); //endpoint para deletar veiculo
 
-  //   app.patch("/veiculo/:id", Updateveiculo);
+  app.patch("/veiculo/:id", Updateveiculo); //endpoint para atualizar veiculo
 }
