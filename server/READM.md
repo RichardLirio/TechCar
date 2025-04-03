@@ -18,7 +18,7 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 ### 1. Cadastro de Clientes e Veículos
 - [x] **RF01:** O sistema deve permitir operações CRUD de clientes. Cadastro, read, update e delete.
 - [x] **RF01.1:** Realizar verificação do cpf e cnpj para saber se é valido.
-- **RF02:** O sistema deve permitir o cadastro de veículos associados a um cliente, com placa, modelo, marca e ano (opcional).
+- [x] **RF02:** O sistema deve permitir o cadastro de veículos associados a um cliente, com placa, modelo, marca e ano (opcional).
 - [x] **RF03:** Usuários podem visualizar, editar e excluir clientes e veículos.
 
 ### 2. Gerenciamento de Ordens de Serviço
@@ -65,7 +65,7 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 
 ### 4. Clientes e Veículos
 -[x] **RN10:** O CPF ou CNPJ de um cliente deve ser único no sistema.
-- **RN11:** Um veículo só pode ser associado a um cliente existente.
+-[x] **RN11:** Um veículo só pode ser associado a um cliente existente.
 
 ## Como Executar
 
