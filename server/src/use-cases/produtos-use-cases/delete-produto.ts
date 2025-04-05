@@ -18,11 +18,14 @@ export class DeleteProdutoUseCase {
     produtoId,
   }: DeleteProdutoUseCaseParams): Promise<DeleteProdutoUseCaseResponse> {
     // Verifica se o produto existe
-    const produto = await this.produtoRepository.deleteById(produtoId);
+
+    const produtoExists = await this.produtoRepository.findById(produtoId);
     // Se o produto não existir, lança um erro
-    if (!produto) {
+    if (!produtoExists) {
       throw new ResourceNotFoundError();
     }
+
+    const produto = await this.produtoRepository.deleteById(produtoId);
 
     return { produto }; // Retorna o cliente excluído
   }

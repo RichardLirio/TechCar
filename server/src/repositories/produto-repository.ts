@@ -4,5 +4,5 @@ export interface ProdutoRepository {
   create(data: Prisma.ProdutoCreateInput): Promise<Produto>;
   findByNome(nome: string): Promise<Produto | null>;
   findById(id: number): Promise<Produto | null>;
-  deleteById(id: number): Promise<Produto | null>;
+  deleteById(id: number): Promise<Produto>;
 }
