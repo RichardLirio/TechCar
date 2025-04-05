@@ -1,5 +1,6 @@
 import { Prisma, Produto, Veiculo } from "@prisma/client";
 import { ProdutoRepository } from "../produto-repository";
+import { formatarNomeProduto } from "@/value-object/NomeProduto";
 
 export class InMemoryProdutoRepository implements ProdutoRepository {
   public items: Produto[] = []; // Armazena os produtos em memória
@@ -20,7 +21,7 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
     const produto: Produto = {
       id,
-      nome: data.nome,
+      nome: await formatarNomeProduto(data.nome),
       quantidade: data.quantidade,
       valorUnitario: data.valorUnitario,
     };
@@ -30,14 +31,9 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
     return produto; // Retorna o Produto criado
   }
 
-  async deleteById(id: number): Promise<Produto | null> {
+  async deleteById(id: number): Promise<Produto> {
     // Deleta um produto pelo ID
     const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do produto pelo ID
-
-    if (index === -1) {
-      return null; // Se o produto não for encontrado, retorna null
-    }
-
     const [produto] = this.items.splice(index, 1); // Remove o produto da lista de produtos em memória
 
     return produto; // Retorna o produto removido ou null se não existir
@@ -54,5 +50,14 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
     const [produto] = this.items.splice(index, 1); // Remove o produto da lista de produtos em memória
 
     return produto; // Retorna o produto removido ou null se não existir
+  }
+
+  async findMany(): Promise<Produto[]> {
+    // Busca todos os produtos em memória
+    console.log(
+      "🚀 ~ InMemoryProdutoRepository ~ findMany ~ this.items:",
+      this.items
+    );
+    return this.items;
   }
 }
