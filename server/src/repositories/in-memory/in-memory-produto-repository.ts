@@ -29,4 +29,30 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
     return produto; // Retorna o Produto criado
   }
+
+  async deleteById(id: number): Promise<Produto | null> {
+    // Deleta um produto pelo ID
+    const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do produto pelo ID
+
+    if (index === -1) {
+      return null; // Se o produto não for encontrado, retorna null
+    }
+
+    const [produto] = this.items.splice(index, 1); // Remove o produto da lista de produtos em memória
+
+    return produto; // Retorna o produto removido ou null se não existir
+  }
+
+  async findById(id: number): Promise<Produto | null> {
+    // Deleta um produto pelo ID
+    const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do produto pelo ID
+
+    if (index === -1) {
+      return null; // Se o produto não for encontrado, retorna null
+    }
+
+    const [produto] = this.items.splice(index, 1); // Remove o produto da lista de produtos em memória
+
+    return produto; // Retorna o produto removido ou null se não existir
+  }
 }
