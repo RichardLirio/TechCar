@@ -30,9 +30,10 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 - **RF09:** O status da ordem pode ser "Em andamento", "Concluído" ou "Cancelado".
 
 ### 3. Controle de Estoque
-- **RF10:** O sistema deve permitir o cadastro de peças com nome, quantidade e valor unitário.
-- **RF11:** Ao criar uma ordem, as peças usadas devem ser deduzidas do estoque.
-- **RF12:** Usuários podem visualizar e atualizar o estoque.
+- **RF10:**   O sistema deve permitir o cadastro de peças com nome, quantidade e valor unitário.
+- **RF10.1:** Não pode ser utilizada uma quantidade maior que a registrada no estoque.
+- **RF11:**   Ao criar uma ordem, as peças usadas devem ser deduzidas do estoque.
+- **RF12:**   Usuários podem visualizar e atualizar o estoque.
 
 ### 4. Gestão de Usuários
 - [X] **RF13:** O sistema deve suportar autenticação de usuários com email, senha e papel (admin ou user).
