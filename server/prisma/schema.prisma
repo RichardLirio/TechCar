@@ -38,7 +38,7 @@ model OrdemServico {
   veiculo     Veiculo            @relation(fields: [veiculoId], references: [id])
   mecanico    Mecanico?          @relation(fields: [mecanicoId], references: [id])
   servicos    Servico[] // Relação com serviços realizados
-  pecasUsadas OrdemEstoque[] // Relação com peças usadas
+  pecasUsadas OrdemItem[] // Relação com produtos usadas
 
   @@map("ordens_servico")
 }
@@ -54,28 +54,28 @@ model Servico {
   @@map("servicos")
 }
 
-// Modelo Estoque
-model Estoque {
-  id             Int            @id @default(autoincrement())
-  nomePeca       String         @db.VarChar(100)
-  quantidade     Int
-  valorUnitario  Float
-  ordens_estoque OrdemEstoque[] // Relação com ordens que usaram essa peça
+// Modelo Produto (Pecas)
+model Produto {
+  id            Int         @id @default(autoincrement())
+  nome          String      @db.VarChar(100)
+  quantidade    Int
+  valorUnitario Float
+  ordens_itens  OrdemItem[] // Relação com ordens que usaram essa peça
 
-  @@map("estoques")
+  @@map("produtos")
 }
 
 // Modelo OrdemEstoque
-model OrdemEstoque {
+model OrdemItem {
   id                Int          @id @default(autoincrement())
   ordemId           Int
-  estoqueId         Int
+  produtoId         Int
   quantidadeUsada   Int
   valorUnitarioPeca Float
   ordem             OrdemServico @relation(fields: [ordemId], references: [id])
-  estoque           Estoque      @relation(fields: [estoqueId], references: [id])
+  produtos          Produto      @relation(fields: [produtoId], references: [id])
 
-  @@map("ordens_estoque")
+  @@map("ordens_items")
 }
 
 // Modelo Cliente
