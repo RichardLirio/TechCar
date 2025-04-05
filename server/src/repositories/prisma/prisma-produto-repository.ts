@@ -56,4 +56,24 @@ export class PrismaProdutoRepository implements ProdutoRepository {
 
     return produto; // Retorna o produto encontrado ou null se não existir
   }
-}
+
+  async findMany() {
+    const produtos = await prisma.produto.findMany({
+      select: {
+        id: true,
+        nome: true,
+        quantidade: true,
+        valorUnitario: true,
+        ordens_itens: {
+          select: {
+            id: true,
+            produtoId: true,
+            ordemId: true,
+            quantidadeUsada: true,
+          },
+        },
+      },
+    });
+    return produtos; // Retorna todos os produtos encontrados
+  }
+} // Busca todos os produtos no banco de dados
