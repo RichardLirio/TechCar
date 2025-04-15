@@ -1,6 +1,6 @@
 import { Prisma, Produto, Veiculo } from "@prisma/client";
 import { ProdutoRepository } from "../produto-repository";
-import { formatarNomeProduto } from "@/value-object/NomeProduto";
+import { formatarDescricao } from "@/value-object/FormatarDescricao";
 
 export class InMemoryProdutoRepository implements ProdutoRepository {
   public items: Produto[] = []; // Armazena os produtos em memória
@@ -21,7 +21,7 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
     const produto: Produto = {
       id,
-      nome: await formatarNomeProduto(data.nome),
+      nome: await formatarDescricao(data.nome),
       quantidade: data.quantidade,
       valorUnitario: data.valorUnitario,
     };
@@ -54,10 +54,6 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
   async findMany(): Promise<Produto[]> {
     // Busca todos os produtos em memória
-    console.log(
-      "🚀 ~ InMemoryProdutoRepository ~ findMany ~ this.items:",
-      this.items
-    );
     return this.items;
   }
 }

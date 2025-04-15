@@ -25,33 +25,47 @@ model Veiculo {
 
 // Modelo OrdemServico
 model OrdemServico {
-  id          Int                @id @default(autoincrement())
-  clienteId   Int
-  veiculoId   Int
-  status      StatusOrdemServico @default(EM_ANDAMENTO)
-  mecanicoId  Int?
-  desconto    Float              @default(0.00)
-  valorTotal  Float
-  createdAt   DateTime           @default(now())
-  updateAt    DateTime           @updatedAt
-  cliente     Cliente            @relation(fields: [clienteId], references: [id])
-  veiculo     Veiculo            @relation(fields: [veiculoId], references: [id])
-  mecanico    Mecanico?          @relation(fields: [mecanicoId], references: [id])
-  servicos    Servico[] // Relação com serviços realizados
+  id         Int                @id @default(autoincrement())
+  clienteId  Int
+  veiculoId  Int
+  km         Int
+  status     StatusOrdemServico @default(EM_ANDAMENTO)
+  mecanicoId Int?
+  desconto   Float              @default(0.00)
+  valorTotal Float
+  createdAt  DateTime           @default(now())
+  updateAt   DateTime           @updatedAt
+  cliente    Cliente            @relation(fields: [clienteId], references: [id])
+  veiculo    Veiculo            @relation(fields: [veiculoId], references: [id])
+  mecanico   Mecanico?          @relation(fields: [mecanicoId], references: [id])
+
   pecasUsadas OrdemItem[] // Relação com produtos usadas
+  servicos    OrdemItemServico[]
 
   @@map("ordens_servico")
 }
 
 // Modelo Servico
 model Servico {
-  id            Int          @id @default(autoincrement())
-  ordemId       Int
+  id            Int                @id @default(autoincrement())
   descricao     String
   valorServico  Float
-  ordem_servico OrdemServico @relation(fields: [ordemId], references: [id])
+  itens_servico OrdemItemServico[]
 
   @@map("servicos")
+}
+
+// Modelo OrdemEstoque
+model OrdemItemServico {
+  id         Int          @id @default(autoincrement())
+  ordemId    Int
+  servicoId  Int
+  quantidade Int
+  valor      Float
+  ordem      OrdemServico @relation(fields: [ordemId], references: [id])
+  servicos   Servico      @relation(fields: [servicoId], references: [id])
+
+  @@map("ordens_items_servicos")
 }
 
 // Modelo Produto (Pecas)

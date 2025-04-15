@@ -1,7 +1,7 @@
 import { Produto } from "@prisma/client";
 import { ProdutoAlreadyExistsError } from "../erros/produto-ja-existe-erro";
 import { ProdutoRepository } from "@/repositories/produto-repository";
-import { formatarNomeProduto } from "@/value-object/NomeProduto";
+import { formatarDescricao } from "@/value-object/FormatarDescricao";
 
 interface CreateProdutoUseCaseParams {
   nome: string;
@@ -21,7 +21,7 @@ export class CreateProdutoUseCase {
     quantidade,
     valorUnitario,
   }: CreateProdutoUseCaseParams): Promise<CreateProdutoUseCaseResponse> {
-    const nomeFormatado = await formatarNomeProduto(nome); // Formata o nome do produto
+    const nomeFormatado = await formatarDescricao(nome); // Formata o nome do produto
 
     const produtoComMesmoNome = await this.produtoRepository.findByNome(
       nomeFormatado
