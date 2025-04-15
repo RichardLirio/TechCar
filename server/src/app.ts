@@ -8,6 +8,7 @@ import fastifyCors from "@fastify/cors";
 import { clientRoutes } from "./http/controllers/cliente/routes";
 import { veiculoRoutes } from "./http/controllers/veiculos/routes";
 import { produtoRoutes } from "./http/controllers/produtos/routes";
+import { servicoRoutes } from "./http/controllers/servicos/routes";
 
 export const app = fastify(); //instacia o app
 //registra o fastify jwt para autenticação
@@ -33,6 +34,7 @@ app.register(usuarioRoutes); //rotas de usuario
 app.register(clientRoutes); //rotas de clientes
 app.register(veiculoRoutes); //rota de veiculos
 app.register(produtoRoutes); //rotas de produtos
+app.register(servicoRoutes); //rotas de servicos
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {

@@ -1,9 +1,9 @@
-import { Prisma, Produto } from "@prisma/client";
+import { Prisma, Servico } from "@prisma/client";
 
-export interface ProdutoRepository {
-  create(data: Prisma.ProdutoCreateInput): Promise<Produto>;
-  findByNome(nome: string): Promise<Produto | null>;
-  findById(id: number): Promise<Produto | null>;
-  deleteById(id: number): Promise<Produto>;
-  findMany(): Promise<Produto[]>;
+export interface ServicoRepository {
+  create(data: Prisma.ServicoCreateInput): Promise<Servico>;
+  findByNome(nome: string): Promise<Servico | null>;
+  findById(id: number): Promise<Servico | null>;
+  deleteById(id: number): Promise<Servico>;
+  findMany(): Promise<Servico[]>;
 }
