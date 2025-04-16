@@ -20,7 +20,6 @@ describe("Update Produto Use Case", () => {
       quantidade: 10,
       valorUnitario: 100,
     }); // Cria um novo produto para testar a atualização
-    console.log("🚀 ~ it ~ produto:", createdProduto);
 
     const { produto } = await sut.execute({
       id: createdProduto.id,

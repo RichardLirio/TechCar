@@ -29,17 +29,12 @@ export class InMemoryVeiculoRepository implements VeiculoRepository {
     return veiculo; // Retorna o Veiculo criado
   }
 
-  async deleteById(id: number) {
+  async deleteById(id: number): Promise<Veiculo> {
     // Deleta um veiculo pelo ID
     const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do veiculo pelo ID
+    const [veiculo] = this.items.splice(index, 1); // Remove o veiculo da lista de veiculos em memória
 
-    if (index === -1) {
-      return null; // Se o veiculo não for encontrado, retorna null
-    }
-
-    const [Veiculo] = this.items.splice(index, 1); // Remove o veiculo da lista de veiculos em memória
-
-    return Veiculo; // Retorna o veiculo removido ou null se não existir
+    return veiculo; // Retorna o veiculo removido ou null se não existir
   }
 
   async findMany(): Promise<Veiculo[]> {

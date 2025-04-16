@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { ResourceNotFoundError } from "../erros/recurso-nao-encontrado";
 import { ClienteRepository } from "@/repositories/cliente-repository";
 import { VeiculoRepository } from "@/repositories/veiculo-repository";
+import { DeleteVeiculoUseCase } from "./delete-veiculo";
 import { InMemoryVeiculoRepository } from "@/repositories/in-memory/in-memory-veiculo-repository";
-import { DeleteVeiculoUseCase } from "../clientes-use-cases/delete-cliente";
 import { InMemoryClientRepository } from "@/repositories/in-memory/in-memory-client-repository";
 
 let veiculoRepository: VeiculoRepository;

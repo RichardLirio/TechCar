@@ -5,7 +5,7 @@ export interface ClienteRepository {
   findBycpfCnpj(cpfCnpj: string): Promise<Cliente | null>;
   findById(id: number): Promise<Cliente | null>;
   findMany(): Promise<Cliente[]>;
-  deleteById(id: number): Promise<Cliente | null>;
+  deleteById(id: number): Promise<Cliente>;
   create(data: Prisma.ClienteCreateInput): Promise<Cliente>;
   update(data: Prisma.ClienteUpdateInput, id: number): Promise<Cliente | null>;
 }

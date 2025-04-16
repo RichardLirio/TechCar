@@ -76,4 +76,16 @@ export class PrismaProdutoRepository implements ProdutoRepository {
     });
     return produtos; // Retorna todos os produtos encontrados
   }
-} // Busca todos os produtos no banco de dados
+
+  async update(data: Prisma.ProdutoUncheckedCreateInput) {
+    // Atualiza um produto no banco de dados
+    const produto = prisma.produto.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+
+    return produto; // Retorna o produto encontrado ou null se não existir
+  }
+}
