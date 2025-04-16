@@ -1,11 +1,14 @@
 import { VerifyJWT } from "@/http/middlewares/verify-jwt";
 import { FastifyInstance } from "fastify";
 import { CreateServico } from "./create-servico-controller";
+import { GetServico } from "./get-servico-controller";
 
 export async function servicoRoutes(app: FastifyInstance) {
   app.addHook("onRequest", VerifyJWT); // middleware para verificar o JWT
 
   app.post("/servico", CreateServico); // endpoint de criação de servico
+
+  app.get("/servico/:id", GetServico); // endpoint para buscar um servico pelo id
 
   //app.delete("/servico/:id", DeleteServico); //delete servico pelo id
 
