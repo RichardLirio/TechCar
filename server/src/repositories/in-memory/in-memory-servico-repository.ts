@@ -56,4 +56,18 @@ export class InMemoryServicoRepository implements ServicoRepository {
 
     return this.items;
   }
+
+  async update(data: Prisma.ServicoUncheckedUpdateInput) {
+    // Atualiza um servico em memória
+    const servico = this.items.find((item) => item.id === data.id); // Encontra o servico pelo ID
+
+    if (!servico) {
+      // Se o servico não for encontrado, retorna null
+      return null;
+    }
+
+    Object.assign(servico, data); // Atualiza os dados do servico encontrado
+
+    return servico; // Retorna o servico encontrado ou null se não existir
+  }
 }
