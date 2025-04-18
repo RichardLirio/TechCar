@@ -83,4 +83,16 @@ export class PrismaServicoRepository implements ServicoRepository {
     });
     return servicos; // Retorna todos os servicos encontrados
   }
+
+  async update(data: Prisma.ServicoUncheckedCreateInput) {
+    // Atualiza um servico no banco de dados
+    const servico = prisma.servico.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+
+    return servico; // Retorna o servico encontrado ou null se não existir
+  }
 } // Busca todos os servicos no banco de dados
