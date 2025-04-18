@@ -59,6 +59,7 @@ Este é um sistema para gerenciamento de oficinas mecânicas, projetado para fac
 - **RN05:** O backend deve validar a disponibilidade de peças no estoque antes de salvar a ordem.
 - **RN06:** O desconto só pode ser maior ou igual a zero e não pode exceder o valor total antes do desconto.
 - **RN07:** Uma ordem só pode ser finalizada ("Concluído") se todas as peças usadas estiverem registradas e deduzidas do estoque.
+-**RN07.1:** Criar caso de uso para os itens da ordem de serviço e agregar ao caso de uso de ordem de serviço. Liberar http somente para ordem de servico completa os itens ficam agregados por baixo dos panos 
 
 ### 3. Estoque
 - **RN08:** A quantidade de peças no estoque não pode ser negativa após a criação de uma ordem.
