@@ -29,7 +29,7 @@ model OrdemServico {
   clienteId  Int
   veiculoId  Int
   km         Int
-  status     StatusOrdemServico @default(EM_ANDAMENTO)
+  status     StatusOrdemServico @default(ABERTA)
   mecanicoId Int?
   desconto   Float              @default(0.00)
   valorTotal Float
@@ -134,7 +134,7 @@ enum Role {
 }
 
 enum StatusOrdemServico {
-  EM_ANDAMENTO
+  ABERTA
   FECHADA
 }
 
