@@ -40,16 +40,15 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
   }
 
   async findById(id: number): Promise<Produto | null> {
-    // Deleta um produto pelo ID
-    const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do produto pelo ID
+    // Busca um item de produto pelo ID
 
-    if (index === -1) {
+    const produto = this.items.find((item) => item.id === id); // Encontra o cliente pelo ID
+
+    if (!produto) {
       return null; // Se o produto não for encontrado, retorna null
     }
 
-    const [produto] = this.items.splice(index, 1); // Remove o produto da lista de produtos em memória
-
-    return produto; // Retorna o produto removido ou null se não existir
+    return produto; // Retorna o produto encontrado ou null se não existir
   }
 
   async findMany(): Promise<Produto[]> {

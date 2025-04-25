@@ -39,16 +39,15 @@ export class InMemoryServicoRepository implements ServicoRepository {
   }
 
   async findById(id: number): Promise<Servico | null> {
-    // Deleta um servico pelo ID
-    const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do servico pelo ID
+    // Busca um item de produto pelo ID
 
-    if (index === -1) {
+    const servico = this.items.find((item) => item.id === id); // Encontra o cliente pelo ID
+
+    if (!servico) {
       return null; // Se o servico não for encontrado, retorna null
     }
 
-    const [servico] = this.items.splice(index, 1); // Remove o servico da lista de servicos em memória
-
-    return servico; // Retorna o servico removido ou null se não existir
+    return servico; // Retorna o servico encontrado ou null se não existir
   }
 
   async findMany(): Promise<Servico[]> {
