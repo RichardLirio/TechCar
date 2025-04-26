@@ -52,17 +52,12 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
     return this.items;
   }
 
-  //   async update(data: Prisma.OrdemServicoUncheckedUpdateInput) {
-  //     // Atualiza um ordemservico em memória
-  //     const ordemservico = this.items.find((item) => item.id === data.id); // Encontra o ordemservico pelo ID
+  async update(data: Prisma.OrdemServicoUncheckedUpdateInput) {
+    // Atualiza um ordemservico em memória
+    const index = this.items.findIndex((item) => item.id === data.id); // Encontra o índice da ordemServico pelo ID
 
-  //     if (!ordemservico) {
-  //       // Se o ordemservico não for encontrado, retorna null
-  //       return null;
-  //     }
+    Object.assign(this.items[index], data); // Atualiza os dados do ordemservico encontrado
 
-  //     Object.assign(ordemservico, data); // Atualiza os dados do ordemservico encontrado
-
-  //     return ordemservico; // Retorna o ordemservico encontrado ou null se não existir
-  //   }
+    return this.items[index]; // Retorna o ordemservico encontrado ou null se não existir
+  }
 }
