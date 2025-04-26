@@ -5,6 +5,6 @@ export interface OrdemServicoRepository {
   //   findByNome(nome: string): Promise<Produto | null>;
   findById(id: number): Promise<OrdemServico | null>;
   deleteById(id: number): Promise<OrdemServico>;
-  //findMany(): Promise<Produto[]>;
+  findMany(): Promise<OrdemServico[]>;
   //   update(data: Prisma.ProdutoUncheckedUpdateInput): Promise<Produto | null>;
 }

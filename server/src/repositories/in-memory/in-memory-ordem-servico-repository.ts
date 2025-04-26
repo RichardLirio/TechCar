@@ -47,10 +47,10 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
     return ordemservico; // Retorna o ordemservico encontrado ou null se não existir
   }
 
-  //   async findMany(): Promise<OrdemServico[]> {
-  //     // Busca todos os ordemservicos em memória
-  //     return this.items;
-  //   }
+  async findMany(): Promise<OrdemServico[]> {
+    // Busca todos os ordemservicos em memória
+    return this.items;
+  }
 
   //   async update(data: Prisma.OrdemServicoUncheckedUpdateInput) {
   //     // Atualiza um ordemservico em memória
