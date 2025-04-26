@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ProdutoRepository } from "@/repositories/produto-repository";
 import { InMemoryProdutoRepository } from "@/repositories/in-memory/in-memory-produto-repository";
-import { GetAllProdutosUseCase } from "./get-todos-produtos";
+import { GetAllProdutosUseCase } from "./fetch-produtos";
 
 let produtoRepository: ProdutoRepository;
 let sut: GetAllProdutosUseCase;

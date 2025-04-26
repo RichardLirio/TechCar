@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ClienteRepository } from "@/repositories/cliente-repository";
-import { GetAllClientesUseCase } from "./get-todos-clientes";
+import { GetAllClientesUseCase } from "./fetch-clientes";
 import { InMemoryClientRepository } from "@/repositories/in-memory/in-memory-client-repository";
 
 let clienteRepository: ClienteRepository;

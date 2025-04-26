@@ -27,13 +27,13 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
     return ordemservico; // Retorna o OrdemServico criado
   }
 
-  //   async deleteById(id: number): Promise<OrdemServico> {
-  //     // Deleta um ordemservico pelo ID
-  //     const index = this.items.findIndex((item) => item.id === id); // Encontra o índice do ordemservico pelo ID
-  //     const [ordemservico] = this.items.splice(index, 1); // Remove o ordemservico da lista de ordemservicos em memória
+  async deleteById(id: number): Promise<OrdemServico> {
+    // Deleta um ordemservico pelo ID
+    const index = this.items.findIndex((item) => item.id === id); // Encontra o índice da ordemServico pelo ID
+    const [ordemServico] = this.items.splice(index, 1); // Remove a ordemServico da lista de ordemservicos em memória
 
-  //     return ordemservico; // Retorna o ordemservico removido ou null se não existir
-  //   }
+    return ordemServico; // Retorna o ordemservico removido ou null se não existir
+  }
 
   async findById(id: number): Promise<OrdemServico | null> {
     // Busca um item de ordemservico pelo ID

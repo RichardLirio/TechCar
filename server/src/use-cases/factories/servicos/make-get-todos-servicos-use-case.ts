@@ -1,5 +1,5 @@
 import { PrismaServicoRepository } from "@/repositories/prisma/prisma-servico-repository"; // Importa o repositório PrismaServicoRepository
-import { GetAllServicosUseCase } from "@/use-cases/servicos-use-cases/get-todos-servicos";
+import { GetAllServicosUseCase } from "@/use-cases/servicos-use-cases/fetch-servicos";
 
 export function makeGetAllServicosUseCase() {
   const servicoRepository = new PrismaServicoRepository();

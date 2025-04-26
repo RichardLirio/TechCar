@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ClienteRepository } from "@/repositories/cliente-repository";
 import { VeiculoRepository } from "@/repositories/veiculo-repository";
-import { GetAllVeiculosUseCase } from "./get-todos-veiculos";
+import { GetAllVeiculosUseCase } from "./fetch-veiculos";
 import { InMemoryVeiculoRepository } from "@/repositories/in-memory/in-memory-veiculo-repository";
 import { InMemoryClientRepository } from "@/repositories/in-memory/in-memory-client-repository";
 

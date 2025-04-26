@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ServicoRepository } from "@/repositories/servico-repository";
 import { InMemoryServicoRepository } from "@/repositories/in-memory/in-memory-servico-repository";
-import { GetAllServicosUseCase } from "./get-todos-servicos";
+import { GetAllServicosUseCase } from "./fetch-servicos";
 
 let servicoRepository: ServicoRepository;
 let sut: GetAllServicosUseCase;

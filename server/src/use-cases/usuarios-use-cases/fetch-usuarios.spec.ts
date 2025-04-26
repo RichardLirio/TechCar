@@ -2,7 +2,7 @@ import { UsuarioRepository } from "@/repositories/usuario-repository";
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-usuario-repository";
 import { hash } from "bcryptjs";
-import { GetAllUsersUseCase } from "./get-todos-usuarios";
+import { GetAllUsersUseCase } from "./fetch-usuarios";
 
 let usuarioRepository: UsuarioRepository;
 let sut: GetAllUsersUseCase;

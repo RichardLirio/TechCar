@@ -1,5 +1,5 @@
 import { PrismaVeiculoRepository } from "@/repositories/prisma/prisma-veiculo-repository";
-import { GetAllVeiculosUseCase } from "@/use-cases/veiculos-use-cases/get-todos-veiculos";
+import { GetAllVeiculosUseCase } from "@/use-cases/veiculos-use-cases/fetch-veiculos";
 
 export function makeGetAllVeiculosUseCase() {
   const VeiculoRepository = new PrismaVeiculoRepository();
