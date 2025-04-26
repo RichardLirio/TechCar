@@ -2,7 +2,7 @@ import { VerifyJWT } from "@/http/middlewares/verify-jwt";
 import { FastifyInstance } from "fastify";
 import { CreateProduto } from "./create-produto-controller";
 import { DeleteProduto } from "./delete-produto-controller";
-import { GetAllProdutos } from "./get-todos-produtos-controller";
+import { GetAllProdutos } from "./fetch-produtos-controller";
 import { GetProduto } from "./get-produto-controller";
 import { UpdateProduto } from "./update-produto-controller";
 

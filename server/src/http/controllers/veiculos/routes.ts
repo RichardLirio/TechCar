@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 import { VerifyJWT } from "@/http/middlewares/verify-jwt";
 import { CreateVeiculo } from "./create-veiculo-controller";
 import { GetVeiculo } from "./get-veiculo-controller";
-import { getAllveiculos } from "./get-todos-veiculos-controller";
+import { getAllveiculos } from "./fetch-veiculos-controller";
 import { DeleteVeiculo } from "./delete-veiculo-controller";
 import { Updateveiculo } from "./update-veiculo-controller";
 

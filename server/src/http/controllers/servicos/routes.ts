@@ -2,7 +2,7 @@ import { VerifyJWT } from "@/http/middlewares/verify-jwt";
 import { FastifyInstance } from "fastify";
 import { CreateServico } from "./create-servico-controller";
 import { GetServico } from "./get-servico-controller";
-import { GetAllServicos } from "./get-todos-servicos-controller";
+import { GetAllServicos } from "./fetch-servicos-controller";
 import { DeleteServico } from "./delete-servico-controller";
 import { UpdateServico } from "./update-servico-controller";
 

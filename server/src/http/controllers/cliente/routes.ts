@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 import { CreateClient } from "./create-cliente-controller";
 import { VerifyJWT } from "@/http/middlewares/verify-jwt";
 import { GetCliente } from "./get-cliente-controller";
-import { getAllClientes } from "./get-todos-clientes-controller";
+import { getAllClientes } from "./fetch-clientes-controller";
 import { DeleteCliente } from "./delete-cliente-controller";
 import { UpdateCliente } from "./update-cliente-controller";
 

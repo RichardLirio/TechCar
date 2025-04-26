@@ -5,7 +5,7 @@ import { refresh } from "./refreshToken";
 import { VerifyJWT } from "@/http/middlewares/verify-jwt";
 import { getUserProfile } from "./get-usuario-profile-controller";
 import { VerifyUserRole } from "@/http/middlewares/verify-user-role";
-import { getAllUsers } from "./get-todos-usuarios-controller";
+import { getAllUsers } from "./fetch-usuarios-controller";
 import { DeleteUser } from "./delete-usuario-controller";
 import { UpdateUser } from "./update-usuario-controller";
 
