@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryClientRepository } from "@/repositories/in-memory/in-memory-client-repository";
-import { CpfCnpjInvalidError } from "../erros/cpfCnpj-invalido";
 import { OrdemServicoRepository } from "@/repositories/ordem-servico-repository";
 import { CreateOrdemServicoUseCase } from "./create-ordem-servico";
 import { InMemoryOrdemServicoRepository } from "@/repositories/in-memory/in-memory-ordem-servico-repository";

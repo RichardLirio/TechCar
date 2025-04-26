@@ -3,25 +3,27 @@ import { ResourceNotFoundError } from "../erros/recurso-nao-encontrado";
 import { OrdemServicoRepository } from "@/repositories/ordem-servico-repository";
 
 interface GetOrdemServicoCaseParams {
-  ordemservicoId: number;
+  ordemServicoId: number;
 } // Cria uma interface para os parâmetros de entrada do caso de uso
 
 interface GetOrdemServicoCaseResponse {
-  ordemservico: OrdemServico;
+  ordemServico: OrdemServico;
 } // Cria uma interface para a resposta do caso de uso
 
 export class GetOrdemServicoUseCase {
-  constructor(private ordemservicoRepository: OrdemServicoRepository) {}
+  constructor(private ordemServicoRepository: OrdemServicoRepository) {}
 
   async execute({
-    ordemservicoId,
+    ordemServicoId,
   }: GetOrdemServicoCaseParams): Promise<GetOrdemServicoCaseResponse> {
-    const ordemservico = await this.ordemservicoRepository.findById(ordemservicoId); // Busca o usuário pelo ID no repositório
+    const ordemServico = await this.ordemServicoRepository.findById(
+      ordemServicoId
+    ); // Busca a ordem de serviço pelo ID no repositório
 
-    if (!ordemservico) {
-      throw new ResourceNotFoundError(); // Lança um erro se o usuário não for encontrado
+    if (!ordemServico) {
+      throw new ResourceNotFoundError(); // Lança um erro se a ordem de serviço não for encontrado
     }
 
-    return { ordemservico }; // Retorna o usuário encontrado
+    return { ordemServico }; // Retorna a ordem de serviço encontrado
   }
 }
