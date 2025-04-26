@@ -15,7 +15,7 @@ export class PrismaVeiculoRepository implements VeiculoRepository {
     return veiculo; // Retorna o veiculo encontrado ou null se não existir
   }
 
-  findById(id: number) {
+  async findById(id: number) {
     // Busca um veiculo pelo ID no banco de dados
     return prisma.veiculo.findUnique({
       where: {

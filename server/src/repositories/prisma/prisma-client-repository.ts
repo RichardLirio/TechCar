@@ -15,11 +15,20 @@ export class PrismaClientRepository implements ClienteRepository {
     return Client; // Retorna o cliente encontrado ou null se não existir
   }
 
-  findById(id: number) {
+  async findById(id: number) {
     // Busca um cliente pelo ID no banco de dados
     return prisma.cliente.findUnique({
       where: {
         id: id,
+      },
+      select: {
+        id: true,
+        nome: true,
+        cpfCnpj: true,
+        telefone: true,
+        tipo: true,
+        veiculos: true,
+        ordens_servico: true,
       },
     });
   }
