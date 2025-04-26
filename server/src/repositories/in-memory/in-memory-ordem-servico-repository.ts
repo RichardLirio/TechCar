@@ -10,17 +10,16 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
   ): Promise<OrdemServico> {
     const id = this.items.length + 1;
 
-    const ordemservico: OrdemServico = {
+    const ordemservico = {
       id,
       clienteId: data.clienteId,
       veiculoId: data.veiculoId,
+      km: data.km,
+      desconto: data.desconto ?? 0,
+      valorTotal: data.valorTotal ?? 0,
+      status: data.status ?? "ABERTA",
       createdAt: new Date(),
-      desconto: data.desconto || 0,
-      valorTotal: data.valorTotal || 0,
-      km: data.km || 0,
-      mecanicoId: data.mecanicoId || null,
-      status: data.status || "ABERTA",
-      updateAt: new Date(),
+      updatedAt: null,
     };
 
     this.items.push(ordemservico); // Adiciona o OrdemServico à lista de ordemservicos em memória

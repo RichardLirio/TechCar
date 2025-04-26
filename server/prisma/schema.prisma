@@ -30,14 +30,12 @@ model OrdemServico {
   veiculoId  Int
   km         Int
   status     StatusOrdemServico @default(ABERTA)
-  mecanicoId Int?
   desconto   Float              @default(0.00)
-  valorTotal Float
+  valorTotal Float              @default(0.00)
   createdAt  DateTime           @default(now())
-  updateAt   DateTime           @updatedAt
+  updatedAt  DateTime?          @updatedAt
   cliente    Cliente            @relation(fields: [clienteId], references: [id])
   veiculo    Veiculo            @relation(fields: [veiculoId], references: [id])
-  mecanico   Mecanico?          @relation(fields: [mecanicoId], references: [id])
 
   pecasUsadas OrdemItem[] // Relação com produtos usadas
   servicos    OrdemItemServico[]
@@ -103,16 +101,6 @@ model Cliente {
   ordens_servico OrdemServico[]
 
   @@map("clientes")
-}
-
-// Modelo Mecanico
-model Mecanico {
-  id             Int            @id @default(autoincrement())
-  nome           String         @db.VarChar(100)
-  especialidade  String?        @db.VarChar(50)
-  ordens_servico OrdemServico[]
-
-  @@map("mecanicos")
 }
 
 // Modelo Usuario
