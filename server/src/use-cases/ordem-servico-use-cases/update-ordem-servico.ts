@@ -69,8 +69,6 @@ export class UpdateOrdemServicoUseCase {
       desconto,
     }); // Cria uma nova ordem de serviço no repositório
 
-    // TODO: Replicar essa logica de update para todos os outros casos de uso
-
     return { ordemServico }; // Retorna a ordem de serviço criada
   }
 }
