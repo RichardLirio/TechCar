@@ -22,6 +22,12 @@ export class UpdateServicoUseCase {
     descricao,
     valorServico,
   }: UpdateServicoUseCaseParams): Promise<UpdateServicoUseCaseResponse> {
+    const servicoExiste = await this.servicoRepository.findById(id);
+
+    if (!servicoExiste) {
+      throw new ResourceNotFoundError(); // Lança um erro se o servico não for encontrado
+    }
+
     const nomeFormatado = await formatarDescricao(descricao); // Formata o nome do servico
     const ServicoWithSameNome = await this.servicoRepository.findByNome(
       nomeFormatado
@@ -36,10 +42,6 @@ export class UpdateServicoUseCase {
       descricao: nomeFormatado,
       valorServico,
     }); // Cria um novo servico no repositório
-
-    if (!servico) {
-      throw new ResourceNotFoundError(); // Lança um erro se o servico não for encontrado
-    }
 
     return { servico }; //Retorna o servico atualizado
   }

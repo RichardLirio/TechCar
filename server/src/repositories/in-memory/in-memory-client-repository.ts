@@ -58,17 +58,12 @@ export class InMemoryClientRepository implements ClienteRepository {
     return cliente; // Retorna o cliente removido ou null se não existir
   }
 
-  async update(data: Prisma.ClienteUpdateInput, id: number) {
+  async update(data: Prisma.ClienteUncheckedUpdateInput) {
     // Atualiza um cliente em memória
-    const cliente = this.items.find((item) => item.id === id); // Encontra o cliente pelo ID
+    const index = this.items.findIndex((item) => item.id === data.id); // Encontra o cliente pelo ID
 
-    if (!cliente) {
-      // Se o cliente não for encontrado, retorna null
-      return null;
-    }
+    Object.assign(this.items[index], data); // Atualiza os dados do cliente encontrado
 
-    Object.assign(cliente, data); // Atualiza os dados do cliente encontrado
-
-    return cliente; // Retorna o cliente encontrado ou null se não existir
+    return this.items[index]; // Retorna o cliente encontrado ou null se não existir
   }
 }

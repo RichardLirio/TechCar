@@ -6,5 +6,5 @@ export interface ServicoRepository {
   findById(id: number): Promise<Servico | null>;
   deleteById(id: number): Promise<Servico>;
   findMany(): Promise<Servico[]>;
-  update(data: Prisma.ServicoUncheckedUpdateInput): Promise<Servico | null>;
+  update(data: Prisma.ServicoUncheckedUpdateInput): Promise<Servico>;
 }

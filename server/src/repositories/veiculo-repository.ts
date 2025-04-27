@@ -6,5 +6,5 @@ export interface VeiculoRepository {
   findByPlaca(placa: string): Promise<Veiculo | null>;
   findById(id: number): Promise<Veiculo | null>;
   findMany(): Promise<Veiculo[]>;
-  update(data: Prisma.VeiculoUncheckedUpdateInput): Promise<Veiculo | null>;
+  update(data: Prisma.VeiculoUncheckedUpdateInput): Promise<Veiculo>;
 }

@@ -6,5 +6,5 @@ export interface ProdutoRepository {
   findById(id: number): Promise<Produto | null>;
   deleteById(id: number): Promise<Produto>;
   findMany(): Promise<Produto[]>;
-  update(data: Prisma.ProdutoUncheckedUpdateInput): Promise<Produto | null>;
+  update(data: Prisma.ProdutoUncheckedUpdateInput): Promise<Produto>;
 }

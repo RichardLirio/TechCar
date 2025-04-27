@@ -48,10 +48,6 @@ export class UpdateUserUseCase {
       role,
     }); // Cria um novo usuário no repositório
 
-    if (!usuario) {
-      throw new ResourceNotFoundError(); // Lança um erro se o usuário não for encontrado
-    }
-
     return { usuario }; //Retorna o usuário atualizado
   }
 }

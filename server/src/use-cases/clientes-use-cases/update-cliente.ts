@@ -39,19 +39,13 @@ export class UpdateClienteUseCase {
       throw new ClientAlreadyExistsError(); // Lança um erro se o cliente já existir
     }
 
-    const cliente = await this.clienteRepository.update(
-      {
-        nome,
-        cpfCnpj,
-        telefone,
-        tipo,
-      },
-      id
-    ); // Cria um novo cliente no repositório
-
-    if (!cliente) {
-      throw new ResourceNotFoundError(); // Lança um erro se o cliente não for encontrado
-    }
+    const cliente = await this.clienteRepository.update({
+      id,
+      nome,
+      cpfCnpj,
+      telefone,
+      tipo,
+    }); // Cria um novo cliente no repositório
 
     return { cliente }; //Retorna o cliente atualizado
   }

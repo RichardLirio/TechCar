@@ -7,5 +7,5 @@ export interface ClienteRepository {
   findMany(): Promise<Cliente[]>;
   deleteById(id: number): Promise<Cliente>;
   create(data: Prisma.ClienteCreateInput): Promise<Cliente>;
-  update(data: Prisma.ClienteUpdateInput, id: number): Promise<Cliente | null>;
+  update(data: Prisma.ClienteUncheckedUpdateInput): Promise<Cliente>;
 }

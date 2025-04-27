@@ -58,15 +58,10 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
   async update(data: Prisma.ProdutoUncheckedUpdateInput) {
     // Atualiza um produto em memória
-    const produto = this.items.find((item) => item.id === data.id); // Encontra o produto pelo ID
+    const index = this.items.findIndex((item) => item.id === data.id); // Encontra o produto pelo ID
 
-    if (!produto) {
-      // Se o produto não for encontrado, retorna null
-      return null;
-    }
+    Object.assign(this.items[index], data); // Atualiza os dados do produto encontrado
 
-    Object.assign(produto, data); // Atualiza os dados do produto encontrado
-
-    return produto; // Retorna o produto encontrado ou null se não existir
+    return this.items[index]; // Retorna o produto encontrado ou null se não existir
   }
 }

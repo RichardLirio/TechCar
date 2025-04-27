@@ -63,10 +63,6 @@ export class UpdateVeiculoUseCase {
       ano,
     }); //atualiza o veiculo no repositório
 
-    if (!veiculo) {
-      throw new ResourceNotFoundError(); // Lança um erro se o veiculo não for encontrado
-    }
-
     return { veiculo }; //Retorna o cliente atualizado
   }
 }

@@ -24,6 +24,12 @@ export class UpdateProdutoUseCase {
     quantidade,
     valorUnitario,
   }: UpdateProdutoUseCaseParams): Promise<UpdateProdutoUseCaseResponse> {
+    const produtoExiste = await this.produtoRepository.findById(id);
+
+    if (!produtoExiste) {
+      throw new ResourceNotFoundError();
+    }
+
     const nomeFormatado = await formatarDescricao(nome); // Formata o nome do produto
     const ProdutoWithSameNome = await this.produtoRepository.findByNome(
       nomeFormatado
@@ -39,10 +45,6 @@ export class UpdateProdutoUseCase {
       quantidade,
       valorUnitario,
     }); // Cria um novo produto no repositório
-
-    if (!produto) {
-      throw new ResourceNotFoundError(); // Lança um erro se o produto não for encontrado
-    }
 
     return { produto }; //Retorna o produto atualizado
   }
