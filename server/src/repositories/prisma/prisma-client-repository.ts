@@ -49,11 +49,11 @@ export class PrismaClientRepository implements ClienteRepository {
     return Client; // Retorna o cliente criado
   }
 
-  async update(data: Prisma.ClienteUpdateInput, id: number) {
+  async update(data: Prisma.ClienteUncheckedCreateInput) {
     // Atualiza um cliente no banco de dados
     const cliente = prisma.cliente.update({
       where: {
-        id,
+        id: data.id,
       },
       data,
     });

@@ -1,8 +1,29 @@
-import { Prisma, OrdemServico } from "@prisma/client";
+import { Prisma, OrdemServico, Veiculo, Cliente } from "@prisma/client";
 import { OrdemServicoRepository } from "../ordem-servico-repository";
+import { GetOrdemServicoCaseResponseType } from "@/use-cases/ordem-servico-use-cases/get-ordem-servico";
 
 export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
   public items: OrdemServico[] = []; // Armazena os ordemservicos em memória
+  public veiculos: Veiculo[] = []; // Armazena os veiculos em memória
+  public clientes: Cliente[] = []; // Armazena os clientes em memória
+
+  async findByVeiculo(veiculoId: number): Promise<OrdemServico | null> {
+    // Busca um ordemservico pelo nome do veículo
+    const veiculo = this.veiculos.find((v) => v.id === veiculoId);
+    if (!veiculo) {
+      return null; // Retorna null se o veículo não for encontrado
+    }
+    return this.items.find((item) => item.veiculoId === veiculo.id) || null;
+  }
+
+  async findByCliente(clienteId: number): Promise<OrdemServico | null> {
+    // Busca um ordemservico pelo nome do cliente
+    const cliente = this.clientes.find((c) => c.id === clienteId);
+    if (!cliente) {
+      return null; // Retorna null se o cliente não for encontrado
+    }
+    return this.items.find((item) => item.clienteId === cliente.id) || null;
+  }
 
   // Cria um novo veiculo em memória
   async create(
@@ -30,12 +51,13 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
   async deleteById(id: number): Promise<OrdemServico> {
     // Deleta um ordemservico pelo ID
     const index = this.items.findIndex((item) => item.id === id); // Encontra o índice da ordemServico pelo ID
+
     const [ordemServico] = this.items.splice(index, 1); // Remove a ordemServico da lista de ordemservicos em memória
 
-    return ordemServico; // Retorna o ordemservico removido ou null se não existir
+    return ordemServico; // Retorna o ordemservico removido
   }
 
-  async findById(id: number): Promise<OrdemServico | null> {
+  async findById(id: number): Promise<GetOrdemServicoCaseResponseType | null> {
     // Busca um item de ordemservico pelo ID
 
     const ordemservico = this.items.find((item) => item.id === id); // Encontra o cliente pelo ID
@@ -44,7 +66,25 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
       return null; // Se o ordemservico não for encontrado, retorna null
     }
 
-    return ordemservico; // Retorna o ordemservico encontrado ou null se não existir
+    const veiculo = this.veiculos.find(
+      (item) => item.id === ordemservico.veiculoId
+    ); // Encontra o veiculo pelo ID
+    const cliente = this.clientes.find(
+      (item) => item.id === ordemservico.clienteId
+    );
+
+    return {
+      id: ordemservico.id,
+      cliente: cliente ?? ({} as Cliente), // Se o cliente não for encontrado, retorna um objeto vazio
+      veiculo: veiculo ?? ({} as Veiculo), // Se o veiculo não for encontrado, retorna um objeto vazio
+      km: ordemservico.km,
+      status: ordemservico.status,
+      valorTotal: ordemservico.valorTotal,
+      desconto: ordemservico.desconto,
+      createdAt: ordemservico.createdAt,
+      updatedAt: ordemservico.updatedAt,
+    };
+    // Retorna o ordemservico encontrado ou null se não existir
   }
 
   async findMany(): Promise<OrdemServico[]> {
@@ -58,6 +98,6 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
 
     Object.assign(this.items[index], data); // Atualiza os dados do ordemservico encontrado
 
-    return this.items[index]; // Retorna o ordemservico encontrado ou null se não existir
+    return this.items[index]; // Retorna o ordemservico encontrado
   }
 }
