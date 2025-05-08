@@ -7,22 +7,28 @@ export class InMemoryOrdemServicoRepository implements OrdemServicoRepository {
   public veiculos: Veiculo[] = []; // Armazena os veiculos em memória
   public clientes: Cliente[] = []; // Armazena os clientes em memória
 
-  async findByVeiculo(veiculoId: number): Promise<OrdemServico | null> {
-    // Busca um ordemservico pelo nome do veículo
+  async findByVeiculo(veiculoId: number): Promise<OrdemServico[] | null> {
+    // Busca ordemservicos pelo ID do veículo
     const veiculo = this.veiculos.find((v) => v.id === veiculoId);
     if (!veiculo) {
       return null; // Retorna null se o veículo não for encontrado
     }
-    return this.items.find((item) => item.veiculoId === veiculo.id) || null;
+    const ordemServicos = this.items.filter(
+      (item) => item.veiculoId === veiculo.id
+    );
+    return ordemServicos.length > 0 ? ordemServicos : null; // Retorna os ordemservicos encontrados ou null se não houver nenhum
   }
 
-  async findByCliente(clienteId: number): Promise<OrdemServico | null> {
-    // Busca um ordemservico pelo nome do cliente
+  async findByCliente(clienteId: number): Promise<OrdemServico[] | null> {
+    // Busca ordemservicos pelo ID do cliente
     const cliente = this.clientes.find((c) => c.id === clienteId);
     if (!cliente) {
       return null; // Retorna null se o cliente não for encontrado
     }
-    return this.items.find((item) => item.clienteId === cliente.id) || null;
+    const ordemServicos = this.items.filter(
+      (item) => item.clienteId === cliente.id
+    );
+    return ordemServicos.length > 0 ? ordemServicos : null; // Retorna os ordemservicos encontrados ou null se não houver nenhum
   }
 
   // Cria um novo veiculo em memória
