@@ -1,0 +1,2 @@
+- Criar os use cases para buscar por veiculo e cliente dentro do repositorio de ordem de servico.
+- Criar rotas http para todo caso de uso de ordem de serviço.
