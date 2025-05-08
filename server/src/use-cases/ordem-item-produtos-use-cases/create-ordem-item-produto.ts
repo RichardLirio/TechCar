@@ -33,13 +33,13 @@ export class CreateOrdemItemProdutoUseCase {
 
     if (!ordemServico) {
       throw new ResourceNotFoundError();
-    } // Lanã um erro caso o recurso enviado não exista
+    } // Lança um erro caso o recurso enviado não exista
 
     const produto = await this.produtoRepository.findById(produtoId);
 
     if (!produto) {
       throw new ResourceNotFoundError();
-    } // Lanã um erro caso o recurso enviado não exista
+    } // Lança um erro caso o recurso enviado não exista
 
     //verificar se o produto possui estoque suficiente
     if (produto.quantidade < quantidadeUsada) {
